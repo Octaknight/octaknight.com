@@ -12,6 +12,7 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/about" element={<About />} />
+        <Route path="/tool-management" element={<div className='text-white'>Tool Management</div>} />
       </Routes>
     </BrowserRouter>
   );
