@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/assets/fonts/Satoshi/Satoshi-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/assets/fonts/Satoshi/Satoshi-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('/assets/fonts/Satoshi/Satoshi-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Root font configuration */
+:root {
+  --font-hero: 'Bricolage Grotesque', sans-serif;
+  --font-heading: 'Sansation', sans-serif;
+  --font-body: 'Satoshi', sans-serif;
+}
+
+/* You can either apply these to your Tailwind config or use utility classes */
+body {
+  font-family: var(--font-body);
+}
+
+.font-satoshi {
+  font-family: var(--font-body);
+}
+
+.font-sansation {
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.font-bricolage {
+  font-family: var(--font-hero);
+}
