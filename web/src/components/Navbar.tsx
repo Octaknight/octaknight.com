@@ -10,7 +10,7 @@ export default function Navbar() {
             const scrollY = window.scrollY;
             if (scrollY < 50) {
                 setNavState(0);
-            } else if (scrollY >= 100 && scrollY < 1400) {
+            } else if (scrollY >= 100 && scrollY < 2000) {
                 setNavState(1); 
             } else {
                 setNavState(2);
