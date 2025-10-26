@@ -1,9 +1,10 @@
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import CalButton from '../CalButton';
 
 export default function Hero() {
     return(
-        <div className="relative min-h-screen flex items-center justify-center bg-transparent text-center overflow-hidden">
+        <div className="Hero relative min-h-screen flex items-center justify-center bg-transparent text-center overflow-hidden">
             <video
                 autoPlay
                 muted
@@ -28,11 +29,7 @@ export default function Hero() {
                 </p>
 
                 <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up animation-delay-600">
-                    <button 
-                        className="px-8 py-3 cursor-pointer bg-white/5 border border-white/10 rounded-full font-satoshi text-white/80 backdrop-blur-sm hover:bg-white/10 hover:text-white transition-all duration-300"
-                    >
-                        Request demo
-                    </button>
+                    <CalButton />
                     
                     <Link 
                         to={"/tool-management"} 
