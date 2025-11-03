@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRightIcon } from 'lucide-react';
 import RoboticArm from '@/assets/icons/RoboticArm';
-import ToolManagementIcon from '@/assets/icons/ToolManagement';
 import IotIcon from '@/assets/icons/IotIcon';
+import aotmuSvgUrl from '@/assets/AOTM.svg';
 
 const solutions = [
   {
@@ -13,7 +13,7 @@ const solutions = [
   },
   {
     title: 'Tool Management',
-    icon: <ToolManagementIcon />,
+    icon: aotmuSvgUrl,
     comingSoon: false,
     explore: true,
   },
@@ -62,7 +62,7 @@ export default function Solutions() {
         className="flex w-full max-w-7xl h-[700px] gap-4"
         onMouseLeave={() => setHovered('Tool Management')}
       >
-        {solutions.map((sol) => {
+        {solutions.map((sol:any) => {
           const isHovered = hovered === sol.title;
           return (
             <motion.div
@@ -73,7 +73,6 @@ export default function Solutions() {
               animate={isHovered ? 'hovered' : 'inactive'}
               transition={{ type: 'spring', stiffness: 400, damping: 30, duration: 0.5 }}
               style={{
-                // Animate border color
                 borderColor: isHovered
                   ? 'rgba(250, 204, 21, 0.4)' 
                   : 'rgba(63, 63, 70, 0.5)',
@@ -83,21 +82,39 @@ export default function Solutions() {
               }}
             >
               {sol.comingSoon && (
-                <span className="absolute top-4 left-4 border border-zinc-600/70 text-zinc-400 text-xs px-2 py-0.5 rounded-full">
+                <span className="absolute top-4 left-4 border border-zinc-600/70 text-xs px-2 py-0.5 rounded-full text-[var(--color-primary-400)]">
                   Coming Soon
                 </span>
               )}
 
               <div className="flex flex-col items-center justify-center h-full gap-6 p-6">
-                <motion.div
-                  variants={iconVariants}
-                  animate={isHovered ? 'hovered' : 'initial'}
-                  transition={{ duration: 0.5 }}
-                >
-                  {React.cloneElement(sol.icon, {
-                    className: 'w-16 h-16 md:w-20 md:h-20',
-                  })}
-                </motion.div>
+                
+                {sol.title === 'Tool Management' ? (
+                  <div
+                    className={`w-32 h-32 md:w-40 md:h-40 transition-colors duration-500 ${
+                      isHovered
+                        ? 'bg-[var(--color-primary-500)]'
+                        : 'bg-zinc-500'
+                    }`}
+                    style={{
+                      maskImage: `url(${sol.icon})`,
+                      maskSize: 'contain',
+                      maskRepeat: 'no-repeat',
+                      maskPosition: 'center',
+                    }}
+                  />
+                ) : (
+                  <motion.div
+                    variants={iconVariants}
+                    animate={isHovered ? 'hovered' : 'initial'}
+                    transition={{ duration: 0.5 }}
+                  >
+                    {React.cloneElement(sol.icon, {
+                      className: 'w-24 h-24 md:w-32 md:h-32',
+                    })}
+                  </motion.div>
+                )}
+
                 <motion.h3
                   className="text-xl md:text-2xl font-semibold"
                   variants={textVariants}
