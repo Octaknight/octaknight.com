@@ -1,4 +1,4 @@
-// src/data/team.ts
+import { CDN_BASE_URL } from "@/lib/config";
 
 export interface TeamMember {
   id: number;
@@ -12,31 +12,30 @@ export const teamMembers: TeamMember[] = [
     id: 1,
     name: "Alice Johnson",
     role: "Lead Robotics Engineer",
-    imageUrl: "/images/team/alice.png",
+    imageUrl: `${CDN_BASE_URL}/team/alice.png`,
   },
   {
     id: 2,
     name: "Bob Williams",
     role: "Automation Specialist",
-    imageUrl: "/images/team/bob.png",
+    imageUrl: `${CDN_BASE_URL}/team/bob.png`,
   },
   {
     id: 3,
     name: "Charlie Brown",
     role: "AI/ML Developer",
-    imageUrl: "/images/team/charlie.png",
+    imageUrl: `${CDN_BASE_URL}/team/charlie.png`,
   },
   {
     id: 4,
     name: "Diana Smith",
     role: "AI/ML Developer",
-    imageUrl: "/images/team/diana.png",
+    imageUrl: `${CDN_BASE_URL}/team/diana.png`,
   },
   {
     id: 5,
     name: "Eve Davis",
     role: "AI/ML Developer",
-    imageUrl: "/images/team/eve.png",
+    imageUrl: `${CDN_BASE_URL}/team/eve.png`,
   }
-  // Add more team members here
 ];

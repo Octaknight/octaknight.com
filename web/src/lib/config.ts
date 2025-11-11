@@ -1,0 +1,1 @@
+export const CDN_BASE_URL = 'https://pub-05ef32feaa264b41bf7b2f560600c73e.r2.dev';

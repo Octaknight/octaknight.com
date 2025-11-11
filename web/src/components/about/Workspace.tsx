@@ -1,26 +1,21 @@
-// src/components/about/Workspace.tsx
-
-import { useState } from "react"; // 1. Import useState
-import { motion, AnimatePresence, type Variants } from "framer-motion"; // 2. Import AnimatePresence
-import ImageModal from "./ImageModal"; // 3. Import the new modal component
+import { useState } from "react";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
+import ImageModal from "./ImageModal";
+import { CDN_BASE_URL } from "@/lib/config";
 
 const imageUrls = [
-  "/images/workspace/ws-1.jpg",
-  "/images/workspace/ws-2.jpg",
-  "/images/workspace/ws-3.jpg",
-  "/images/workspace/ws-4.jpg",
+  `${CDN_BASE_URL}/workspace/ws-1.jpg`,
+  `${CDN_BASE_URL}/workspace/ws-2.jpg`,
+  `${CDN_BASE_URL}/workspace/ws-3.jpg`,
+  `${CDN_BASE_URL}/workspace/ws-4.jpg`,
 ];
 
 const Workspace = () => {
-  // 4. Add state to track the selected image URL
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
-  // (The variant definitions remain the same)
   const containerVariants: Variants = { /* ... */ };
   const imageVariants: Variants = { /* ... */ };
 
   return (
-    // Use a React Fragment `<>` to allow multiple top-level elements
     <>
       <section className="py-24 bg-background">
         <div className="container max-w-5xl px-4 mx-auto">
@@ -46,7 +41,7 @@ const Workspace = () => {
                 className="relative h-64 overflow-hidden rounded-lg shadow-lg group cursor-pointer" // 5. Add cursor-pointer
                 variants={imageVariants}
                 style={index === 0 ? { gridColumn: "span 2 / span 2" } : {}}
-                onClick={() => setSelectedImage(url)} // 6. Set the selected image on click
+                onClick={() => setSelectedImage(url)}
               >
                 <img
                   src={url}
@@ -58,8 +53,6 @@ const Workspace = () => {
           </motion.div>
         </div>
       </section>
-
-      {/* 7. Conditionally render the modal using AnimatePresence */}
       <AnimatePresence>
         {selectedImage && (
           <ImageModal
