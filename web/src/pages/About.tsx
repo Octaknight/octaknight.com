@@ -4,7 +4,6 @@ import Mission from "@/components/(landing)/Mission";
 import CoreValues from "@/components/about/CoreValues";
 import Workspace from "@/components/about/Workspace";
 import Team from "@/components/(landing)/Team";
-import CallToAction from "@/components/about/CallToAction";
 
 const About = () => {
   return (
@@ -13,7 +12,6 @@ const About = () => {
       <CoreValues />
       <Workspace />
       <Team />
-      <CallToAction />
     </main>
   );
 };
