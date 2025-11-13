@@ -10,10 +10,10 @@ const Team = () => {
       <div className="container max-w-5xl px-4 mx-auto">
         <div className="mb-12 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-            Meet The Team
+            The Foundation
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            The brilliant minds behind OCTAKNIGHT LABS.
+            The dedicated team behind OCTAKNIGHT LABS.
           </p>
         </div>
 

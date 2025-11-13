@@ -10,33 +10,39 @@ export interface TeamMember {
 export const teamMembers: TeamMember[] = [
   {
     id: 1,
-    name: "Alice Johnson",
-    role: "Lead Robotics Engineer",
-    imageUrl: "/images/team/alice.png",
+    name: "Devi Baby",
+    role: "Knows Drones",
+    imageUrl: "/images/team/Devi.png",
   },
   {
     id: 2,
-    name: "Bob Williams",
-    role: "Automation Specialist",
-    imageUrl: "/images/team/bob.png",
+    name: "Sultankhan Pathan",
+    role: "Actual Tony Stark",
+    imageUrl: "/images/team/Sultan_2.png",
   },
   {
     id: 3,
-    name: "Charlie Brown",
-    role: "AI/ML Developer",
-    imageUrl: "/images/team/charlie.png",
+    name: "Rohit Raghwan",
+    role: "Keeps Actual Tony Stark at bay",
+    imageUrl: "/images/team/Rohit.png",
   },
   {
     id: 4,
-    name: "Diana Smith",
-    role: "AI/ML Developer",
-    imageUrl: "/images/team/diana.png",
+    name: "Prathamesh Raikar",
+    role: "The Electric Wizard",
+    imageUrl: "/images/team/Ash.png",
   },
   {
     id: 5,
-    name: "Eve Davis",
-    role: "AI/ML Developer",
-    imageUrl: "/images/team/eve.png",
+    name: "Lakki",
+    role: "Hoots sometimes",
+    imageUrl: "/images/team/Lakki 2.png",
+  },
+  {
+    id: 6,
+    name: "Tani",
+    role: "Laughs at everything",
+    imageUrl: "/images/team/Tani.png",
   }
   // Add more team members here
 ];
