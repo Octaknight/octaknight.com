@@ -1,4 +1,4 @@
-// src/data/team.ts
+import { CDN_BASE_URL } from "@/lib/config";
 
 export interface TeamMember {
   id: number;
@@ -44,5 +44,4 @@ export const teamMembers: TeamMember[] = [
     role: "Laughs at everything",
     imageUrl: "/images/team/Tani.png",
   }
-  // Add more team members here
 ];
