@@ -1,3 +1,4 @@
+import { CDN_BASE_URL } from "@/lib/config";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
@@ -6,7 +7,7 @@ const tools = [
     id: 1,
     name: "Robotic Gripper",
     category: "End Effectors",
-    image: "/assets/tools/robotic_gripper.png",
+    image: `${CDN_BASE_URL}/tools/robotic_gripper.png`,
     date: "24 Feb 2024",
     bgColor: "bg-[#1a1a1a]",
   },
@@ -14,7 +15,7 @@ const tools = [
     id: 2,
     name: "Precision Sensor",
     category: "Sensing",
-    image: "/assets/tools/precision_sensor.png",
+    image: `${CDN_BASE_URL}/tools/precision_sensor.png`,
     date: "22 Mar 2024",
     bgColor: "bg-[#2a2a2a]",
   },
@@ -22,7 +23,7 @@ const tools = [
     id: 3,
     name: "Assembly Arm",
     category: "Robotics",
-    image: "/assets/tools/assembly_arm.png",
+    image: `${CDN_BASE_URL}/tools/assembly_arm.png`,
     date: "24 Jan 2024",
     bgColor: "bg-[var(--color-primary-500)]",
   },

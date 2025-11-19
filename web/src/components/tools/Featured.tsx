@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { CDN_BASE_URL } from "@/lib/config";
 
 const featuredTools = [
   {
@@ -8,21 +9,21 @@ const featuredTools = [
     name: "Robotic Gripper",
     category: "End Effectors",
     description: "High-precision adaptive gripping for delicate components. Designed for versatility in modern manufacturing lines.",
-    image: "/assets/tools/robotic_gripper.png",
+    image: `${CDN_BASE_URL}/tools/robotic_gripper.png`,
   },
   {
     id: 2,
     name: "Precision Sensor",
     category: "Sensing",
     description: "Nanometer-level accuracy for quality control automation. Ensure zero-defect production with real-time feedback.",
-    image: "/assets/tools/precision_sensor.png",
+    image: `${CDN_BASE_URL}/tools/precision_sensor.png`,
   },
   {
     id: 3,
     name: "Assembly Arm",
     category: "Robotics",
     description: "6-axis articulated arm for complex assembly tasks. High speed, high payload, and collaborative safety features.",
-    image: "/assets/tools/assembly_arm.png",
+    image: `${CDN_BASE_URL}/tools/assembly_arm.png`,
   },
 ];
 
