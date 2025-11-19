@@ -2,12 +2,20 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-export default function Navbar() {
+export default function Navbar({page}: {page: string}) {
     const [navState, setNavState] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
     const [isHidden, setIsHidden] = useState(false);
 
+    const isToolsPage = page.toLowerCase() === "tools";
+
     useEffect(() => {
+        if (isToolsPage) {
+            setNavState(0);
+            setIsHidden(false);
+            return;
+        }
+
         const handleScroll = () => {
             const currentScrollY = window.scrollY;
             if (currentScrollY < 50) {
@@ -21,7 +29,7 @@ export default function Navbar() {
                 setIsHidden(true);
             } else {
                 setIsHidden(false);
-            }
+            }    
         };
 
         const handleMouseMove = (e: MouseEvent) => {
@@ -38,7 +46,7 @@ export default function Navbar() {
             window.removeEventListener('scroll', handleScroll);
             window.removeEventListener('mousemove', handleMouseMove);
         };
-    }, []);
+    }, [isToolsPage]);
 
     const navBaseClasses = "fixed top-0 left-1/2 -translate-x-1/2 w-full flex items-center justify-between z-50";
 
@@ -46,6 +54,7 @@ export default function Navbar() {
         0: "py-4 px-8",
         1: "py-3 px-6 mt-4 max-w-md sm:max-w-lg md:max-w-2xl bg-[#0E0E10] rounded-full shadow-lg",
         2: "py-3 px-6 mt-4 max-w-lg sm:max-w-xl md:max-w-3xl bg-[#0E0E10] rounded-full shadow-lg",
+        3: "py-4 px-8"
     };
     
     const primaryLinkContainerClasses = "flex items-center space-x-6 sm:space-x-8 text-sm sm:text-base font-satoshi";
@@ -93,7 +102,21 @@ export default function Navbar() {
 
             <div className="relative h-6 flex items-center justify-end overflow-hidden">
                 <AnimatePresence mode="wait">
-                    {navState < 2 ? (
+                    {isToolsPage ? (
+                         <motion.div
+                            key="tools-nav"
+                            variants={linkVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                            transition={{ duration: 0.2 }}
+                            className={primaryLinkContainerClasses}
+                        >
+                            <Link to="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
+                            <Link to="/about" className="text-white/60 hover:text-white transition-colors">About</Link>
+                            <Link to="/contact" className="text-white/60 hover:text-white transition-colors">Contact us</Link>
+                        </motion.div>
+                    ) : navState < 2 ? (
                         <motion.div
                             key="primary"
                             variants={linkVariants}
