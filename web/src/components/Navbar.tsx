@@ -4,22 +4,42 @@ import { Link } from 'react-router-dom';
 
 export default function Navbar() {
     const [navState, setNavState] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
+    const [isHidden, setIsHidden] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
-            const scrollY = window.scrollY;
-            if (scrollY < 50) {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY < 50) {
                 setNavState(0);
-            } else if (scrollY >= 100 && scrollY < 2000) {
+            } else if (currentScrollY >= 100 && currentScrollY < 2000) {
                 setNavState(1); 
             } else {
                 setNavState(2);
             }
+            if (currentScrollY > 1500) {
+                setIsHidden(true);
+            } else {
+                setIsHidden(false);
+            }
+        };
+
+        const handleMouseMove = (e: MouseEvent) => {
+            if (e.clientY < 100) {
+                setIsHovered(true);
+            } else {
+                setIsHovered(false);
+            }
         };
 
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('mousemove', handleMouseMove);
+        };
     }, []);
+
     const navBaseClasses = "fixed top-0 left-1/2 -translate-x-1/2 w-full flex items-center justify-between z-50";
 
     const navDynamicClasses: any = {
@@ -37,10 +57,16 @@ export default function Navbar() {
         exit: { opacity: 0, y: 20 },
     };
 
+    const shouldHide = isHidden && !isHovered;
+
     return (
         <motion.nav
             layout
-            transition={{ type: "spring", stiffness: 170, damping: 30, duration: 0.4 }}
+            animate={{ 
+                y: shouldHide ? -100 : 0,
+                opacity: shouldHide ? 0 : 1
+            }}
+            transition={{ type: "spring", stiffness: 170, damping: 30, duration: 0.1 }}
             className={`${navBaseClasses} ${navDynamicClasses[navState]}`}
         >
             <div className="flex items-center space-x-4 overflow-hidden">
@@ -101,5 +127,3 @@ export default function Navbar() {
         </motion.nav>
     );
 }
-
-
