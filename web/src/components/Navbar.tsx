@@ -79,25 +79,27 @@ export default function Navbar({page}: {page: string}) {
             className={`${navBaseClasses} ${navDynamicClasses[navState]}`}
         >
             <div className="flex items-center space-x-4 overflow-hidden">
-                <motion.img
-                    layout
-                    src="/logo.png"
-                    alt="Octaknight Labs Logo"
-                    className={`${navState > 0 ? 'h-10 w-10' : 'h-8 w-8'}`}
-                />
-                <AnimatePresence>
-                    {navState === 0 && (
-                        <motion.span
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: -20, transition: { duration: 0.2 } }}
-                            transition={{ duration: 0.3, ease: 'easeInOut' }}
-                            className="text-white/80 hover:text-white text-xl font-sansation whitespace-nowrap"
-                        >
-                            OCTAKNIGHT LABS
-                        </motion.span>
-                    )}
-                </AnimatePresence>
+                <Link to="/" className="cursor-pointer flex items-center space-x-4">
+                    <motion.img
+                        layout
+                        src="/logo.png"
+                        alt="Octaknight Labs Logo"
+                        className={`${navState > 0 ? 'h-10 w-10' : 'h-8 w-8'}`}
+                    />
+                    <AnimatePresence>
+                        {navState === 0 && (
+                            <motion.span
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -20, transition: { duration: 0.2 } }}
+                                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                className="text-white/80 hover:text-white text-xl font-sansation whitespace-nowrap"
+                            >
+                                OCTAKNIGHT LABS
+                            </motion.span>
+                        )}
+                    </AnimatePresence>
+                </Link>
             </div>
 
             <div className="relative h-6 flex items-center justify-end overflow-hidden">
