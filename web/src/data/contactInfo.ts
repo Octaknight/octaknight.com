@@ -1,26 +1,24 @@
-// src/data/contactInfo.ts
-import { Mail, MapPin, Phone, type LucideIcon } from "lucide-react";
+import { MapPin, Mail, Phone, Clock } from "lucide-react";
 
-interface ContactInfo {
-  icon: LucideIcon;
-  title: string;
-  content: string;
-}
-
-export const contactInfoItems: ContactInfo[] = [
+export const contactInfoItems = [
   {
-    icon: Phone,
-    title: "Phone",
-    content: "+1 (555) 123-4567",
-  },
-  {
-    icon: Mail,
-    title: "Email",
-    content: "contact@roboticsautomation.com",
-  },
-  {
+    title: "Headquarters",
+    content: "Some Random Address, City, Country",
     icon: MapPin,
-    title: "Address",
-    content: "123 Automation Avenue, Tech City, USA",
+  },
+  {
+    title: "Email Us",
+    content: "Some Random Email Address",
+    icon: Mail,
+  },
+  {
+    title: "Call Us",
+    content: "Some Random Phone Number",
+    icon: Phone,
+  },
+  {
+    title: "Working Hours",
+    content: "Mon - Fri: 9:00 AM - 6:00 PM EST",
+    icon: Clock,
   },
 ];
