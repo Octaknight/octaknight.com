@@ -4,17 +4,16 @@ import { contactInfoItems } from "@/data/contactInfo";
 import { Copy, X, ExternalLink, Phone, Mail, MapPin } from "lucide-react";
 import { toast } from "sonner";
 
-// Helper to detect mobile devices roughly
 const isMobileDevice = () => {
   return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 };
 
 export default function ContactInfo() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<{ title: string; content: string; action: string } | null>(null);
+  const [selectedItem, setSelectedItem] = useState<{ title: string; content: string; action: string; phones?: string[] } | null>(null);
 
   // Handle copying content to clipboard
-  const handleCopy = (e: React.MouseEvent, content: string, label: string) => {
+  const handleCopy = (e: React.MouseEvent, content: string, _label: string) => {
     e.stopPropagation(); // Prevent card click
     navigator.clipboard.writeText(content);
     toast.success(`Copied to clipboard`, {
@@ -48,25 +47,40 @@ export default function ContactInfo() {
     if (!selectedItem) return;
 
     if (selectedItem.action === "location") {
-      // Open Google Maps
-      const query = encodeURIComponent(selectedItem.content);
-      window.open(`https://www.google.com/maps/search/?api=1&query=${query}`, "_blank");
+      window.open(`https://maps.app.goo.gl/W3M3n2xad63EjWUc8`, "_blank");
     } 
     else if (selectedItem.action === "email") {
-      // Open Mail Client
-      window.location.href = `mailto:${selectedItem.content}`;
-    } 
-    else if (selectedItem.action === "phone") {
-      if (isMobileDevice()) {
-        // Mobile: Dial
-        window.location.href = `tel:${selectedItem.content}`;
-      } else {
-        // Desktop: Copy
-        navigator.clipboard.writeText(selectedItem.content);
-        toast.success("Phone number copied to clipboard");
-      }
-    }
+      const email = "contact@octaknight.com";
 
+      const subject = encodeURIComponent("Contact Us");
+      const body = encodeURIComponent("Hello, I am interested in your product/service");
+
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+        email
+      )}&su=${subject}&body=${body}`;
+
+      // open Gmail compose in a new tab
+      window.open(gmailUrl, "_blank", "noopener,noreferrer");
+    }
+    // Phone action is now handled by individual phone buttons in modal
+
+    setModalOpen(false);
+  };
+
+  // Handle individual phone number action
+  const handlePhoneAction = (phoneNumber: string) => {
+    if (isMobileDevice()) {
+      window.location.href = `tel:${phoneNumber}`;
+    } else {
+      navigator.clipboard.writeText(phoneNumber);
+      toast.success("Phone number copied to clipboard", {
+        style: {
+          background: '#0E0E10',
+          color: '#fff',
+          borderColor: 'rgba(255,255,255,0.1)'
+        }
+      });
+    }
     setModalOpen(false);
   };
 
@@ -87,18 +101,18 @@ export default function ContactInfo() {
       case "email":
         return {
           title: "Open Email?",
-          desc: `This will open your default email app to write to ${selectedItem.content}.`,
+          desc: `This will open Gmail to compose an email to ${selectedItem.content}.`,
           btn: "Open Mail",
           icon: <Mail className="w-5 h-5" />
         };
       case "phone":
         return {
-          title: isMobile ? "Call Number?" : "Copy Phone Number?",
+          title: isMobile ? "Select a Line to Call" : "Select a Line to Copy",
           desc: isMobile 
-            ? `Do you want to call ${selectedItem.content}?` 
-            : `Do you want to copy ${selectedItem.content} to your clipboard?`,
-          btn: isMobile ? "Call Now" : "Copy Number",
-          icon: <Phone className="w-5 h-5" />
+            ? "Choose which number you'd like to call:" 
+            : "Choose which number you'd like to copy to clipboard:",
+          icon: <Phone className="w-5 h-5" />,
+          showPhoneOptions: true
         };
       default:
         return null;
@@ -161,7 +175,13 @@ export default function ContactInfo() {
                   <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={(e) => handleCopy(e, item.content, item.title)}
+                    onClick={(e) => {
+                      // For phone items, copy only the first number
+                      const contentToCopy = action === "phone" && (item as any).phones?.[0] 
+                        ? (item as any).phones[0] 
+                        : item.content;
+                      handleCopy(e, contentToCopy, item.title);
+                    }}
                     // CHANGED: Removed initial={{ opacity: 0 }}
                     // CHANGED: Added opacity-100 (mobile default) and lg:opacity-0 (desktop default)
                     className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 rounded-full bg-white/10 text-white/50 hover:bg-[var(--color-primary-500)] hover:text-[#0E0E10] transition-all duration-200 opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
@@ -227,20 +247,45 @@ export default function ContactInfo() {
                   {modalData.desc}
                 </p>
 
-                <div className="flex gap-3">
-                  <button
-                    onClick={() => setModalOpen(false)}
-                    className="flex-1 py-3 px-4 rounded-xl bg-white/5 text-white font-satoshi hover:bg-white/10 transition-colors"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={confirmAction}
-                    className="flex-1 py-3 px-4 rounded-xl bg-[var(--color-primary-500)] text-[#0E0E10] font-sansation font-bold hover:bg-[var(--color-primary-400)] transition-colors flex items-center justify-center gap-2"
-                  >
-                    {modalData.btn} <ExternalLink className="w-4 h-4" />
-                  </button>
-                </div>
+
+                {/* Action Buttons - Different layout for phone options */}
+                {modalData.showPhoneOptions && selectedItem?.phones ? (
+                  <div className="space-y-3">
+                    {selectedItem.phones.map((phone, index) => (
+                      <motion.button
+                        key={index}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        onClick={() => handlePhoneAction(phone)}
+                        className="w-full py-3 px-4 rounded-xl bg-white/5 hover:bg-[var(--color-primary-500)] text-white hover:text-[#0E0E10] font-satoshi transition-all duration-200 flex items-center justify-center gap-2 group"
+                      >
+                        <Phone className="w-4 h-4" />
+                        <span className="font-sansation font-bold">{phone}</span>
+                      </motion.button>
+                    ))}
+                    <button
+                      onClick={() => setModalOpen(false)}
+                      className="w-full py-3 px-4 rounded-xl bg-white/5 text-white/60 font-satoshi hover:bg-white/10 hover:text-white transition-colors mt-2"
+                    >
+                      Cancel
+                    </button>
+                  </div>
+                ) : (
+                  <div className="flex gap-3">
+                    <button
+                      onClick={() => setModalOpen(false)}
+                      className="flex-1 py-3 px-4 rounded-xl bg-white/5 text-white font-satoshi hover:bg-white/10 transition-colors"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={confirmAction}
+                      className="flex-1 py-3 px-4 rounded-xl bg-[var(--color-primary-500)] text-[#0E0E10] font-sansation font-bold hover:bg-[var(--color-primary-400)] transition-colors flex items-center justify-center gap-2"
+                    >
+                      {modalData.btn} <ExternalLink className="w-4 h-4" />
+                    </button>
+                  </div>
+                )}
               </div>
               
               {/* Bottom Progress/Border Accent */}

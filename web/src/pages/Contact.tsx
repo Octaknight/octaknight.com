@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 const Contact = () => {
   return (
     <>
-      <Navbar />
+      <Navbar page="contact"/>
       <main className="min-h-screen bg-[#0E0E10] relative overflow-hidden text-white selection:bg-primary-500/30">
         {/* Background Ambient Glows */}
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary-500/10 rounded-full blur-[100px] -translate-y-1/2 pointer-events-none" />

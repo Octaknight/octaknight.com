@@ -7,7 +7,7 @@ export default function Navbar({page}: {page: string}) {
     const [isHovered, setIsHovered] = useState(false);
     const [isHidden, setIsHidden] = useState(false);
 
-    const isToolsPage = page.toLowerCase() === "tools";
+    const isToolsPage = page.toLowerCase() === "tools" || page.toLowerCase() === "contact";
 
     useEffect(() => {
         if (isToolsPage) {
