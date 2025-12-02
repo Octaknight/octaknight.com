@@ -2,30 +2,59 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
-export default function Navbar() {
+export default function Navbar({page}: {page: string}) {
     const [navState, setNavState] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
+    const [isHidden, setIsHidden] = useState(false);
+
+    const isToolsPage = page.toLowerCase() === "tools";
 
     useEffect(() => {
+        if (isToolsPage) {
+            setNavState(0);
+            setIsHidden(false);
+            return;
+        }
+
         const handleScroll = () => {
-            const scrollY = window.scrollY;
-            if (scrollY < 50) {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY < 50) {
                 setNavState(0);
-            } else if (scrollY >= 100 && scrollY < 2000) {
+            } else if (currentScrollY >= 100 && currentScrollY < 2000) {
                 setNavState(1); 
             } else {
                 setNavState(2);
             }
+            if (currentScrollY > 1500) {
+                setIsHidden(true);
+            } else {
+                setIsHidden(false);
+            }    
+        };
+
+        const handleMouseMove = (e: MouseEvent) => {
+            if (e.clientY < 100) {
+                setIsHovered(true);
+            } else {
+                setIsHovered(false);
+            }
         };
 
         window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('mousemove', handleMouseMove);
+        };
+    }, [isToolsPage]);
+
     const navBaseClasses = "fixed top-0 left-1/2 -translate-x-1/2 w-full flex items-center justify-between z-50";
 
     const navDynamicClasses: any = {
         0: "py-4 px-8",
         1: "py-3 px-6 mt-4 max-w-md sm:max-w-lg md:max-w-2xl bg-[#0E0E10] rounded-full shadow-lg",
         2: "py-3 px-6 mt-4 max-w-lg sm:max-w-xl md:max-w-3xl bg-[#0E0E10] rounded-full shadow-lg",
+        3: "py-4 px-8"
     };
     
     const primaryLinkContainerClasses = "flex items-center space-x-6 sm:space-x-8 text-sm sm:text-base font-satoshi";
@@ -37,37 +66,59 @@ export default function Navbar() {
         exit: { opacity: 0, y: 20 },
     };
 
+    const shouldHide = isHidden && !isHovered;
+
     return (
         <motion.nav
             layout
-            transition={{ type: "spring", stiffness: 170, damping: 30, duration: 0.4 }}
+            animate={{ 
+                y: shouldHide ? -100 : 0,
+                opacity: shouldHide ? 0 : 1
+            }}
+            transition={{ type: "spring", stiffness: 170, damping: 30, duration: 0.1 }}
             className={`${navBaseClasses} ${navDynamicClasses[navState]}`}
         >
             <div className="flex items-center space-x-4 overflow-hidden">
-                <motion.img
-                    layout
-                    src="/logo.png"
-                    alt="Octaknight Labs Logo"
-                    className={`${navState > 0 ? 'h-10 w-10' : 'h-8 w-8'}`}
-                />
-                <AnimatePresence>
-                    {navState === 0 && (
-                        <motion.span
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: -20, transition: { duration: 0.2 } }}
-                            transition={{ duration: 0.3, ease: 'easeInOut' }}
-                            className="text-white/80 hover:text-white text-xl font-sansation whitespace-nowrap"
-                        >
-                            OCTAKNIGHT LABS
-                        </motion.span>
-                    )}
-                </AnimatePresence>
+                <Link to="/" className="cursor-pointer flex items-center space-x-4">
+                    <motion.img
+                        layout
+                        src="/logo.png"
+                        alt="Octaknight Labs Logo"
+                        className={`${navState > 0 ? 'h-10 w-10' : 'h-8 w-8'}`}
+                    />
+                    <AnimatePresence>
+                        {navState === 0 && (
+                            <motion.span
+                                initial={{ opacity: 0, x: -20 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                exit={{ opacity: 0, x: -20, transition: { duration: 0.2 } }}
+                                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                className="text-white/80 hover:text-white text-xl font-sansation whitespace-nowrap"
+                            >
+                                OCTAKNIGHT LABS
+                            </motion.span>
+                        )}
+                    </AnimatePresence>
+                </Link>
             </div>
 
             <div className="relative h-6 flex items-center justify-end overflow-hidden">
                 <AnimatePresence mode="wait">
-                    {navState < 2 ? (
+                    {isToolsPage ? (
+                         <motion.div
+                            key="tools-nav"
+                            variants={linkVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                            transition={{ duration: 0.2 }}
+                            className={primaryLinkContainerClasses}
+                        >
+                            <Link to="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
+                            <Link to="/about" className="text-white/60 hover:text-white transition-colors">About</Link>
+                            <Link to="/contact" className="text-white/60 hover:text-white transition-colors">Contact us</Link>
+                        </motion.div>
+                    ) : navState < 2 ? (
                         <motion.div
                             key="primary"
                             variants={linkVariants}
@@ -101,5 +152,3 @@ export default function Navbar() {
         </motion.nav>
     );
 }
-
-

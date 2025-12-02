@@ -5,17 +5,10 @@
   import Contact from './pages/Contact';
   import About from './pages/About';
 
-  function App() {
-
+function App() {
     return (
       <BrowserRouter>
-        {/* 
-          This component renders the notifications. 
-          'richColors' gives it default success/error styling, 
-          and 'theme="dark"' matches your site. 
-        */}
         <Toaster position="bottom-right" richColors theme="dark" />
-
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/contact" element={<Contact />} />
