@@ -123,21 +123,7 @@ export default function ContactInfo() {
 
   return (
     <>
-      <div className="flex flex-col justify-center space-y-12">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-3xl font-sansation font-bold mb-6 text-white">
-            Direct Communications
-          </h2>
-          <p className="text-white/60 font-satoshi text-lg leading-relaxed max-w-md">
-            Whether you need technical support, sales information, or just want to say hello, our team is ready to assist you.
-          </p>
-        </motion.div>
-
+      <div className="flex flex-col justify-center">
         <div className="grid gap-6">
           {contactInfoItems.map((item, index) => {
             const action = getActionType(item.title);
@@ -148,7 +134,7 @@ export default function ContactInfo() {
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
                 onClick={() => handleCardClick(item)}
                 className={`group relative flex items-start gap-5 p-6 rounded-2xl bg-white/5 border border-white/5 transition-all duration-300
@@ -161,13 +147,23 @@ export default function ContactInfo() {
                 </div>
                 
                 {/* Text Content */}
-                <div className="flex-1 pr-10"> {/* Added padding-right to prevent text overlapping button */}
+                <div className="flex-1 pr-10">
                   <h3 className="text-lg font-sansation font-bold text-white mb-1">
                     {item.title}
                   </h3>
-                  <p className="text-white/60 font-satoshi group-hover:text-white/90 transition-colors break-words">
-                    {item.content}
-                  </p>
+                  {action === "phone" && (item as any).phones ? (
+                    <div className="space-y-1">
+                      {(item as any).phones.map((phone: string, idx: number) => (
+                        <p key={idx} className="text-white/60 font-satoshi group-hover:text-white/90 transition-colors">
+                          {phone}
+                        </p>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-white/60 font-satoshi group-hover:text-white/90 transition-colors break-words">
+                      {item.content}
+                    </p>
+                  )}
                 </div>
 
                 {/* Copy Button (Only for clickable items) */}
@@ -199,6 +195,7 @@ export default function ContactInfo() {
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ delay: 0.5 }}
           className="p-6 mt-8 rounded-2xl bg-gradient-to-r from-[var(--color-primary-500)]/20 to-transparent border border-[var(--color-primary-500)]/20"
         >
