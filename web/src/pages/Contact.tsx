@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import ContactForm from "@/components/contact/ContactForm";
 import ContactInfo from "@/components/contact/ContactInfo";
 import Navbar from "@/components/Navbar";
+import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 
 const Contact = () => {
   return (
@@ -18,10 +19,18 @@ const Contact = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="text-center mb-20"
           >
-            <h1 className="text-5xl md:text-7xl font-sansation font-bold tracking-tighter mb-6 text-white">
-              Get in Touch
-            </h1>
-            <p className="text-lg md:text-xl text-white/60 font-satoshi max-w-2xl mx-auto leading-relaxed">
+            {/* 
+               UPDATED CONTAINER:
+               - Reduced height from 20rem to 12rem max.
+               - This ensures the text looks large and the container fits snugly.
+            */}
+            <div className="h-[8rem] sm:h-[10rem] md:h-[12rem] flex items-center justify-center w-full">
+              <div className="w-full max-w-5xl h-full flex items-center justify-center px-4">
+                <TextHoverEffect text="Get in Touch" />
+              </div>
+            </div>
+            
+            <p className="text-base sm:text-lg md:text-xl text-white/60 font-satoshi max-w-2xl mx-auto leading-relaxed px-4 mt-6">
               Ready to automate your future? Reach out to our engineering team for inquiries about robotics, tooling, or IoT solutions.
             </p>
           </motion.div>

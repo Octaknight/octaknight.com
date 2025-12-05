@@ -13,7 +13,7 @@ export const contactInfoItems = [
   },
   {
     title: "Call Us",
-    content: "+91 93414 48170, +91 87621 84925, +91 81971 54066",
+    content: "+91 93414 48170 | +91 87621 84925 | +91 81971 54066",
     icon: Phone,
     phones: [
       "+91 93414 48170",
