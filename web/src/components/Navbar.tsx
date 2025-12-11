@@ -6,6 +6,7 @@ export default function Navbar({page}: {page: string}) {
     const [navState, setNavState] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
     const [isHidden, setIsHidden] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const isToolsPage = page.toLowerCase() === "tools" || page.toLowerCase() === "contact";
 
@@ -51,10 +52,10 @@ export default function Navbar({page}: {page: string}) {
     const navBaseClasses = "fixed top-0 left-1/2 -translate-x-1/2 w-full flex items-center justify-between z-50";
 
     const navDynamicClasses: any = {
-        0: "py-4 px-8",
-        1: "py-3 px-6 mt-4 max-w-md sm:max-w-lg md:max-w-2xl bg-[#0E0E10] rounded-full shadow-lg",
-        2: "py-3 px-6 mt-4 max-w-lg sm:max-w-xl md:max-w-3xl bg-[#0E0E10] rounded-full shadow-lg",
-        3: "py-4 px-8"
+        0: "py-4 px-4 md:px-8",
+        1: "py-4 px-4 md:py-3 md:px-6 md:mt-4 md:max-w-2xl md:bg-[#0E0E10] md:rounded-full md:shadow-lg",
+        2: "py-4 px-4 md:py-3 md:px-6 md:mt-4 md:max-w-3xl md:bg-[#0E0E10] md:rounded-full md:shadow-lg",
+        3: "py-4 px-4 md:px-8"
     };
     
     const primaryLinkContainerClasses = "flex items-center space-x-6 sm:space-x-8 text-sm sm:text-base font-satoshi";
@@ -69,86 +70,209 @@ export default function Navbar({page}: {page: string}) {
     const shouldHide = isHidden && !isHovered;
 
     return (
-        <motion.nav
-            layout
-            animate={{ 
-                y: shouldHide ? -100 : 0,
-                opacity: shouldHide ? 0 : 1
-            }}
-            transition={{ type: "spring", stiffness: 170, damping: 30, duration: 0.1 }}
-            className={`${navBaseClasses} ${navDynamicClasses[navState]}`}
-        >
-            <div className="flex items-center space-x-4 overflow-hidden">
-                <Link to="/" className="cursor-pointer flex items-center space-x-4">
-                    <motion.img
-                        layout
-                        src="/logo.png"
-                        alt="Octaknight Labs Logo"
-                        className={`${navState > 0 ? 'h-10 w-10' : 'h-8 w-8'}`}
-                    />
-                    <AnimatePresence>
-                        {navState === 0 && (
-                            <motion.span
-                                initial={{ opacity: 0, x: -20 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: -20, transition: { duration: 0.2 } }}
-                                transition={{ duration: 0.3, ease: 'easeInOut' }}
-                                className="text-white/80 hover:text-white text-xl font-sansation whitespace-nowrap"
+        <>
+            <motion.nav
+                layout
+                animate={{ 
+                    y: shouldHide ? -100 : 0,
+                    opacity: shouldHide ? 0 : 1
+                }}
+                transition={{ type: "spring", stiffness: 170, damping: 30, duration: 0.1 }}
+                className={`${navBaseClasses} ${navDynamicClasses[navState]}`}
+            >
+                <div className="flex items-center space-x-2 sm:space-x-4 overflow-hidden">
+                    <Link to="/" className="cursor-pointer flex items-center space-x-2 sm:space-x-4">
+                        <motion.img
+                            layout
+                            src="/logo.png"
+                            alt="Octaknight Labs Logo"
+                            className={`${navState > 0 ? 'h-8 w-8 sm:h-10 sm:w-10' : 'h-7 w-7 sm:h-8 sm:w-8'}`}
+                        />
+                        <AnimatePresence>
+                            {navState === 0 && (
+                                <motion.span
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    exit={{ opacity: 0, x: -20, transition: { duration: 0.2 } }}
+                                    transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                    className="text-white/80 hover:text-white text-base sm:text-xl font-sansation whitespace-nowrap hidden xs:block"
+                                >
+                                    OCTAKNIGHT LABS
+                                </motion.span>
+                            )}
+                        </AnimatePresence>
+                    </Link>
+                </div>
+
+                <div className="relative h-6 hidden md:flex items-center justify-end overflow-hidden">
+                    <AnimatePresence mode="wait">
+                        {isToolsPage ? (
+                             <motion.div
+                                key="tools-nav"
+                                variants={linkVariants}
+                                initial="hidden"
+                                animate="visible"
+                                exit="exit"
+                                transition={{ duration: 0.2 }}
+                                className={primaryLinkContainerClasses}
                             >
-                                OCTAKNIGHT LABS
-                            </motion.span>
+                                <Link to="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
+                                <Link to="/about" className="text-white/60 hover:text-white transition-colors">About</Link>
+                                <Link to="/contact" className="text-white/60 hover:text-white transition-colors">Contact us</Link>
+                            </motion.div>
+                        ) : navState < 2 ? (
+                            <motion.div
+                                key="primary"
+                                variants={linkVariants}
+                                initial="hidden"
+                                animate="visible"
+                                exit="exit"
+                                transition={{ duration: 0.2 }}
+                                className={primaryLinkContainerClasses}
+                            >
+                                <Link to="/about" className="text-white/60 hover:text-white transition-colors">About</Link>
+                                <Link to="/contact" className="text-white/60 hover:text-white transition-colors">Contact us</Link>
+                                <Link to="/tool-management" className="text-white/60 hover:text-white transition-colors">Explore</Link>
+                            </motion.div>
+                        ) : (
+                            <motion.div
+                                key="solutions"
+                                variants={linkVariants}
+                                initial="hidden"
+                                animate="visible"
+                                exit="exit"
+                                transition={{ duration: 0.2 }}
+                                className={solutionsLinkContainerClasses}
+                            >
+                                <a href="#robotics" className="text-white/60 hover:text-white transition-colors">Robotics</a>
+                                <a href="#tool-management" className="text-white/60 hover:text-white transition-colors whitespace-nowrap">Tool Management</a>
+                                <a href="#iot-devices" className="text-white/60 hover:text-white transition-colors">IoT devices</a>
+                            </motion.div>
                         )}
                     </AnimatePresence>
-                </Link>
-            </div>
+                </div>
 
-            <div className="relative h-6 flex items-center justify-end overflow-hidden">
-                <AnimatePresence mode="wait">
-                    {isToolsPage ? (
-                         <motion.div
-                            key="tools-nav"
-                            variants={linkVariants}
-                            initial="hidden"
-                            animate="visible"
-                            exit="exit"
-                            transition={{ duration: 0.2 }}
-                            className={primaryLinkContainerClasses}
-                        >
-                            <Link to="/" className="text-white/60 hover:text-white transition-colors">Home</Link>
-                            <Link to="/about" className="text-white/60 hover:text-white transition-colors">About</Link>
-                            <Link to="/contact" className="text-white/60 hover:text-white transition-colors">Contact us</Link>
-                        </motion.div>
-                    ) : navState < 2 ? (
+                <button
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    className="md:hidden z-50 p-2 text-white/60 hover:text-white transition-colors"
+                    aria-label="Toggle menu"
+                >
+                    <svg
+                        className="w-6 h-6"
+                        fill="none"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        {isMobileMenuOpen ? (
+                            <path d="M6 18L18 6M6 6l12 12" />
+                        ) : (
+                            <path d="M4 6h16M4 12h16M4 18h16" />
+                        )}
+                    </svg>
+                </button>
+            </motion.nav>
+
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <>
                         <motion.div
-                            key="primary"
-                            variants={linkVariants}
-                            initial="hidden"
-                            animate="visible"
-                            exit="exit"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
                             transition={{ duration: 0.2 }}
-                            className={primaryLinkContainerClasses}
-                        >
-                            <Link to="/about" className="text-white/60 hover:text-white transition-colors">About</Link>
-                            <Link to="/contact" className="text-white/60 hover:text-white transition-colors">Contact us</Link>
-                            <Link to="/tool-management" className="text-white/60 hover:text-white transition-colors">Explore</Link>
-                        </motion.div>
-                    ) : (
+                            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 md:hidden"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        />
+                        
                         <motion.div
-                            key="solutions"
-                            variants={linkVariants}
-                            initial="hidden"
-                            animate="visible"
-                            exit="exit"
-                            transition={{ duration: 0.2 }}
-                            className={solutionsLinkContainerClasses}
+                            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                            transition={{ type: 'spring', damping: 25, stiffness: 400 }}
+                            className="fixed top-20 right-4 bg-[#0E0E10]/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/10 z-50 md:hidden overflow-hidden"
                         >
-                            <a href="#robotics" className="text-white/60 hover:text-white transition-colors">Robotics</a>
-                            <a href="#tool-management" className="text-white/60 hover:text-white transition-colors whitespace-nowrap">Tool Management</a>
-                            <a href="#iot-devices" className="text-white/60 hover:text-white transition-colors">IoT devices</a>
+                            <div className="flex flex-col p-6 space-y-4 font-satoshi min-w-[200px]">
+                                {isToolsPage ? (
+                                    <>
+                                        <Link 
+                                            to="/" 
+                                            className="text-white/70 hover:text-white transition-colors text-base py-2 px-3 rounded-lg hover:bg-white/5"
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                        >
+                                            Home
+                                        </Link>
+                                        <Link 
+                                            to="/about" 
+                                            className="text-white/70 hover:text-white transition-colors text-base py-2 px-3 rounded-lg hover:bg-white/5"
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                        >
+                                            About
+                                        </Link>
+                                        <Link 
+                                            to="/contact" 
+                                            className="text-white/70 hover:text-white transition-colors text-base py-2 px-3 rounded-lg hover:bg-white/5"
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                        >
+                                            Contact us
+                                        </Link>
+                                    </>
+                                ) : navState < 2 ? (
+                                    <>
+                                        <Link 
+                                            to="/about" 
+                                            className="text-white/70 hover:text-white transition-colors text-base py-2 px-3 rounded-lg hover:bg-white/5"
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                        >
+                                            About
+                                        </Link>
+                                        <Link 
+                                            to="/contact" 
+                                            className="text-white/70 hover:text-white transition-colors text-base py-2 px-3 rounded-lg hover:bg-white/5"
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                        >
+                                            Contact us
+                                        </Link>
+                                        <Link 
+                                            to="/tool-management" 
+                                            className="text-white/70 hover:text-white transition-colors text-base py-2 px-3 rounded-lg hover:bg-white/5"
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                        >
+                                            Explore
+                                        </Link>
+                                    </>
+                                ) : (
+                                    <>
+                                        <a 
+                                            href="#robotics" 
+                                            className="text-white/70 hover:text-white transition-colors text-base py-2 px-3 rounded-lg hover:bg-white/5"
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                        >
+                                            Robotics
+                                        </a>
+                                        <a 
+                                            href="#tool-management" 
+                                            className="text-white/70 hover:text-white transition-colors text-base py-2 px-3 rounded-lg hover:bg-white/5"
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                        >
+                                            Tool Management
+                                        </a>
+                                        <a 
+                                            href="#iot-devices" 
+                                            className="text-white/70 hover:text-white transition-colors text-base py-2 px-3 rounded-lg hover:bg-white/5"
+                                            onClick={() => setIsMobileMenuOpen(false)}
+                                        >
+                                            IoT devices
+                                        </a>
+                                    </>
+                                )}
+                            </div>
                         </motion.div>
-                    )}
-                </AnimatePresence>
-            </div>
-        </motion.nav>
+                    </>
+                )}
+            </AnimatePresence>
+        </>
     );
 }
