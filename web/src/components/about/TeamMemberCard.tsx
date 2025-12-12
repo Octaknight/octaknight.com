@@ -1,5 +1,3 @@
-// src/components/(landing)/TeamMemberCard.tsx
-
 import type { TeamMember } from "@/data/team";
 import { motion } from "framer-motion";
 

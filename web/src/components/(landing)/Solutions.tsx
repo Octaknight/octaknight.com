@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRightIcon } from 'lucide-react';
 import RoboticArm from '@/assets/icons/RoboticArm';
-import IotIcon from '@/assets/icons/IotIcon';
+import iotSvgUrl from '@/assets/IOT.svg';
 import aotmuSvgUrl from '@/assets/AOTM.svg';
 
 const solutions = [
@@ -19,7 +19,7 @@ const solutions = [
   },
   {
     title: 'IoT Devices',
-    icon: <IotIcon />,
+    icon: iotSvgUrl,
     comingSoon: true,
   },
 ];
@@ -89,9 +89,13 @@ export default function Solutions() {
 
               <div className="flex flex-col items-center justify-center h-full gap-6 p-6">
                 
-                {sol.title === 'Tool Management' ? (
+                {typeof sol.icon === 'string' ? (
                   <div
-                    className={`w-32 h-32 md:w-72 md:h-72 transition-colors duration-500 ${
+                    className={`${
+                      sol.title === 'IoT Devices' 
+                        ? 'w-28 h-28 md:w-64 md:h-64 mb-6' 
+                        : 'w-32 h-32 md:w-72 md:h-72'
+                    } transition-colors duration-500 ${
                       isHovered
                         ? 'bg-[var(--color-primary-500)]'
                         : 'bg-zinc-500'

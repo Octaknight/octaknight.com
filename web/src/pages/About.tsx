@@ -3,7 +3,7 @@ import AboutHero from "@/components/about/AboutHero";
 import Mission from "@/components/about/Mission";
 import CoreValues from "@/components/about/CoreValues";
 import Workspace from "@/components/about/Workspace";
-import Team from "@/components/(landing)/Team";
+import Team from "@/components/about/Team";
 import Navbar from "@/components/Navbar";
 
 const About = () => {
