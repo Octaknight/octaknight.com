@@ -8,7 +8,7 @@ export default function Navbar({page}: {page: string}) {
     const [isHidden, setIsHidden] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-    const isToolsPage = page.toLowerCase() === "tools" || page.toLowerCase() === "contact";
+    const isToolsPage = page.toLowerCase() === "tools" || page.toLowerCase() === "contact" || page.toLowerCase() === "about";
 
     useEffect(() => {
         if (isToolsPage) {

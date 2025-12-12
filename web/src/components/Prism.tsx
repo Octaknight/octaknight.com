@@ -193,12 +193,12 @@ const Prism: React.FC<PrismProps> = ({
 
         // --- MODIFICATION: Gold Palette Theme ---
         // Define colors from your theme
-        // --color-primary-400: #e4bb3b
-        vec3 colorGoldMid = vec3(0.894, 0.733, 0.231); 
-        // --color-primary-200: #f0e197
-        vec3 colorGoldHigh = vec3(0.941, 0.882, 0.592); 
+        // --color-primary-400: #e4bb3b (Darkened for better contrast)
+        vec3 colorGoldMid = vec3(0.5, 0.38, 0.1); 
+        // --color-primary-200: #f0e197 (Muted for subtlety)
+        vec3 colorGoldHigh = vec3(0.75, 0.6, 0.2); 
         // Dark base for contrast
-        vec3 colorDark = vec3(0.05, 0.03, 0.0); 
+        vec3 colorDark = vec3(0.02, 0.01, 0.0); 
 
         // Use the red channel (o.r) as the primary driver for intensity
         float intensity = o.r; 

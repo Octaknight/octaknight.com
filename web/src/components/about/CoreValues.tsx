@@ -27,7 +27,7 @@ const CoreValues = () => {
 
   return (
     // Using `bg-secondary` to alternate the background color again
-    <section className="py-24 bg-secondary">
+    <section className="py-24">
       <div className="container max-w-5xl px-4 mx-auto">
         <div className="mb-16 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
