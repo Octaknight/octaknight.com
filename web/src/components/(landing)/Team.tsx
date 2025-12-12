@@ -5,15 +5,15 @@ import TeamMemberCard from "./TeamMemberCard";
 
 const Team = () => {
   return (
-    <section className="py-16 bg-background md:py-24">
+    <section className="py-24 bg-background md:py-24">
       {/* CHANGE 1: Added `max-w-5xl` to make the container narrower */}
       <div className="container max-w-5xl px-4 mx-auto">
         <div className="mb-12 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
             The Foundation
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            The dedicated team behind OCTAKNIGHT LABS.
+          <p className="mt-4 text-lg text-muted-foreground font-satoshi">
+            The minds engineering the next generation of intelligent systems.
           </p>
         </div>
 

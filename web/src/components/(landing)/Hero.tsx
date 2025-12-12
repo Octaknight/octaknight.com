@@ -33,7 +33,7 @@ export default function Hero() {
                     
                     <Link 
                         to={"/tool-management"} 
-                        className="cursor-pointer px-8 py-3 bg-[var(--color-primary-400)] rounded-full font-satoshi text-[var(--secondary)] font-medium hover:bg-[var(--color-primary-300)] transition-all duration-300 shadow-lg shadow-yellow-500/10 flex items-center justify-center"
+                        className="cursor-pointer px-6 py-3 bg-[var(--color-primary-400)] rounded-full font-satoshi text-[var(--secondary)] font-medium hover:bg-[var(--color-primary-300)] transition-all duration-300 shadow-lg shadow-yellow-500/10 flex items-center justify-center"
                     >
                         <span className="whitespace-nowrap mr-2 text-black">
                             Explore solutions
