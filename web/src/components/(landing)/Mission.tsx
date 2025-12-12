@@ -165,7 +165,7 @@ export default function Mission() {
     }, []);
 
     return (
-    <section className="relative w-full overflow-x-hidden font-satoshi text-white">
+    <section className="relative w-full overflow-hidden font-satoshi text-white">
       <div
         ref={heroRef}
         className="relative z-10 flex min-h-[60vh] md:min-h-[72vh] flex-col items-center justify-center py-16 md:py-20 text-center"
