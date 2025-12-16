@@ -78,7 +78,7 @@ export default function Navbar({page}: {page: string}) {
                     opacity: shouldHide ? 0 : 1
                 }}
                 transition={{ type: "spring", stiffness: 170, damping: 30, duration: 0.1 }}
-                className={`${navBaseClasses} ${navDynamicClasses[navState]}`}
+                className={`${navBaseClasses} ${navDynamicClasses[navState]} ${isToolsPage ? 'backdrop-blur-md bg-black/20 border-b border-white/5' : ''}`}
             >
                 <div className="flex items-center space-x-2 sm:space-x-4 overflow-hidden">
                     <Link to="/" className="cursor-pointer flex items-center space-x-2 sm:space-x-4">
