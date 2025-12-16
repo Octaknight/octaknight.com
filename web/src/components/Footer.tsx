@@ -1,10 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Instagram, Linkedin, Twitter, Github } from 'lucide-react';
 import ParticleLogo from './ParticleLogo';
 import ParticleMobileLogo from './ParticleMobileLogo';
+import { TextHoverEffect } from './ui/text-hover-effect';
 
 export default function Footer() {
+  const location = useLocation();
   const currentYear = new Date().getFullYear();
+
+  if (location.pathname === '/coming-soon' || location.pathname === '/coming-soon/') {
+    return null;
+  }
 
   return (
     <footer className="relative bg-black text-white overflow-hidden pt-10 md:pt-20 pb-10">
@@ -15,15 +21,19 @@ export default function Footer() {
               <img src="/logo.png" alt="Logo" className="w-4 h-4 rounded-full" />
               Octaknight Pvt Ltd
             </div>
-            <h2 className="text-3xl md:text-5xl font-sansation font-bold leading-tight">
-              Engineering the <br />
-              <span className="text-[var(--color-primary-400)] italic font-serif">future of automation</span>
-            </h2>
+            <div className="flex flex-col items-start">
+              <h2 className="text-4xl md:text-6xl font-sansation font-bold leading-tight mb-[-10px] md:mb-[-20px]">
+                Engineering the
+              </h2>
+              <div className="h-[60px] md:h-[100px] w-full mr-0 md:mr-[-60px] -ml-1 md:ml-0">
+                <TextHoverEffect text="future of automation" />
+              </div>
+            </div>
           </div>
 
           <div className="md:col-span-1"></div>
 
-          <div className="grid grid-cols-2 md:grid-cols-1 gap-8 md:col-span-2 md:block md:space-y-6">
+          <div className="grid grid-cols-2 md:grid-cols-1 gap-8 md:col-span-2 md:block md:space-y-6 mt-5">
              <div className="space-y-6">
                 <h3 className="text-sm font-bold tracking-widest text-[var(--color-primary-400)] uppercase">Explore</h3>
                 <ul className="space-y-4">
@@ -35,7 +45,7 @@ export default function Footer() {
              </div>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-1 gap-8 md:col-span-2 md:block md:space-y-6">
+          <div className="grid grid-cols-2 md:grid-cols-1 gap-8 md:col-span-2 md:block md:space-y-6 mt-5">
             <div className="space-y-6">
                 <h3 className="text-sm font-bold tracking-widest text-[var(--color-primary-400)] uppercase">Support</h3>
                 <ul className="space-y-4">
@@ -47,7 +57,7 @@ export default function Footer() {
           </div>
 
           <div className="md:col-span-2 space-y-6">
-            <h3 className="text-sm font-bold tracking-widest text-[var(--color-primary-400)] uppercase">Connect</h3>
+            <h3 className="text-sm font-bold tracking-widest text-[var(--color-primary-400)] uppercase mt-5">Connect</h3>
             <ul className="space-y-4">
               <li>
                 <a href="#" className="flex items-center gap-2 text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi">
