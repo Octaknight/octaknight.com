@@ -7,6 +7,8 @@ import Tools from './pages/Tools';
 import Product from './pages/Product';
 import ComingSoon from './pages/ComingSoon';
 
+import Footer from './components/Footer';
+
 
 function App() {
 
@@ -20,6 +22,7 @@ function App() {
         <Route path="/product" element={<Product />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
       </Routes>
+      <Footer />
       </BrowserRouter>
     );
   }
