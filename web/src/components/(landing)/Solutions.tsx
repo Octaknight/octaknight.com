@@ -4,6 +4,7 @@ import { ArrowRightIcon } from 'lucide-react';
 import RoboticArm from '@/assets/icons/RoboticArm';
 import iotSvgUrl from '@/assets/IOT.svg';
 import aotmuSvgUrl from '@/assets/AOTM.svg';
+import { Link } from 'react-router-dom';
 
 const solutions = [
   {
@@ -58,6 +59,7 @@ export default function Solutions() {
         Discover our ecosystem of advanced robotics and smart-factory solutions.
       </p>
 
+
       <div
         className="flex w-full max-w-7xl h-[700px] gap-4"
         onMouseLeave={() => setHovered('Tool Management')}
@@ -65,6 +67,11 @@ export default function Solutions() {
         {solutions.map((sol:any) => {
           const isHovered = hovered === sol.title;
           return (
+            <Link
+              key={sol.title}
+              to={sol.title === 'Tool Management' ? '/tool-management' : '/coming-soon'}
+              className="contents"
+            >
             <motion.div
               key={sol.title}
               className="relative h-full rounded-2xl border transition-colors duration-500 backdrop-blur-sm overflow-hidden cursor-pointer"
@@ -137,9 +144,11 @@ export default function Solutions() {
                   </div>)}
               </div>
             </motion.div>
+            </Link>
           );
         })}
       </div>
+
     </div>
   );
 }

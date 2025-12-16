@@ -1,13 +1,14 @@
+import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import OrderModal from './OrderModal';
 
 export default function Hero() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     return (
         <div className="relative min-h-screen w-full bg-black overflow-hidden">
-            {/* Background Elements */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-zinc-900/40 via-black to-black z-0"></div>
             
-            {/* Content - Centered Absolute Overlay */}
             <div className="absolute inset-0 z-20 container mx-auto px-4 flex flex-col items-center justify-center text-center pointer-events-none">
                 <div className="pointer-events-auto">
                     <h1 className="text-5xl md:text-7xl font-bricolage font-bold text-white tracking-tight leading-none mb-5 animate-fade-in-up">
@@ -32,8 +33,8 @@ export default function Hero() {
                                 View Specs
                             </span>
                         </button>
-                        <Link 
-                            to={"/tool-management"} 
+                        <button 
+                            onClick={() => setIsModalOpen(true)}
                             className="cursor-pointer px-6 py-3 bg-[var(--color-primary-400)] rounded-full font-satoshi text-[var(--secondary)] font-medium hover:bg-[var(--color-primary-300)] transition-all duration-300 shadow-lg shadow-yellow-500/10 flex items-center justify-center"
                         >
                             <span className="whitespace-nowrap mr-2 text-black">
@@ -44,27 +45,29 @@ export default function Hero() {
                             >
                                 <ArrowRight className="h-3 w-3 text-white" />
                             </div>
-                        </Link>
+                        </button>
                         
                     </div>
                 </div>
             </div>
 
-            {/* Robotic Arm Image - Background Layer */}
             <div className="absolute bottom-0 w-full h-full z-10 animate-fade-in-up animation-delay-600 pointer-events-none">
                 <img 
                     src="/assets/product/Hero.png" 
                     alt="Robotic Arm Series X" 
                     className="w-full h-full object-contain object-bottom"
                 />
-                {/* Gradient Overlay to blend image with background */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-40"></div>
                 <div className="absolute inset-0 bg-gradient-to-l from-black via-transparent to-black opacity-40"></div>
             </div>
 
-            {/* Decorative Elements */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[var(--color-primary-400)]/5 rounded-full blur-3xl z-0 pointer-events-none"></div>
+
+            <OrderModal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)} 
+            />
         </div>
     );
 }

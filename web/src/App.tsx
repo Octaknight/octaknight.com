@@ -5,6 +5,8 @@ import Contact from './pages/Contact';
 import About from './pages/About';
 import Tools from './pages/Tools';
 import Product from './pages/Product';
+import ComingSoon from './pages/ComingSoon';
+
 
 function App() {
 
@@ -16,6 +18,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/tool-management" element={<Tools />} />
         <Route path="/product" element={<Product />} />
+        <Route path="/coming-soon" element={<ComingSoon />} />
       </Routes>
       </BrowserRouter>
     );
