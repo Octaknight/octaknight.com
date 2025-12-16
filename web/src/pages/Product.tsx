@@ -2,7 +2,6 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/(product)/Hero';
 import Images from '../components/(product)/Images';
 import Assets from '../components/(product)/Assets';
-import Footer from '../components/Footer';
 import Specs from '../components/(product)/Specs';
 import { products } from '@/data/productInfo';
 
@@ -15,7 +14,6 @@ export default function Product() {
             <Images />
             <Specs />
             <Assets />
-            <Footer />
         </div>
     );
 }
