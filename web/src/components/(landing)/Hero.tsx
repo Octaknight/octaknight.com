@@ -9,6 +9,7 @@ export default function Hero() {
                 autoPlay
                 muted
                 playsInline
+                preload="auto"
                 className="absolute top-0 left-0 w-full h-full object-cover z-0"
             >
                 <source src="/octaknight.mp4" type="video/mp4" />

@@ -142,9 +142,9 @@ export default function Navbar({page}: {page: string}) {
                                 transition={{ duration: 0.2 }}
                                 className={solutionsLinkContainerClasses}
                             >
-                                <a href="#robotics" className="text-white/60 hover:text-white transition-colors">Robotics</a>
-                                <a href="#tool-management" className="text-white/60 hover:text-white transition-colors whitespace-nowrap">Tool Management</a>
-                                <a href="#iot-devices" className="text-white/60 hover:text-white transition-colors">IoT devices</a>
+                                <Link to="/coming-soon" className="text-white/60 hover:text-white transition-colors">Robotics</Link>
+                                <Link to="/tool-management" className="text-white/60 hover:text-white transition-colors whitespace-nowrap">Tool Management</Link>
+                                <Link to="/coming-soon" className="text-white/60 hover:text-white transition-colors">IoT devices</Link>
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -244,21 +244,21 @@ export default function Navbar({page}: {page: string}) {
                                 ) : (
                                     <>
                                         <a 
-                                            href="#robotics" 
+                                            href="/coming-soon" 
                                             className="text-white/70 hover:text-white transition-colors text-base py-2 px-3 rounded-lg hover:bg-white/5"
                                             onClick={() => setIsMobileMenuOpen(false)}
                                         >
                                             Robotics
                                         </a>
                                         <a 
-                                            href="#tool-management" 
+                                            href="/tool-management" 
                                             className="text-white/70 hover:text-white transition-colors text-base py-2 px-3 rounded-lg hover:bg-white/5"
                                             onClick={() => setIsMobileMenuOpen(false)}
                                         >
                                             Tool Management
                                         </a>
                                         <a 
-                                            href="#iot-devices" 
+                                            href="/coming-soon" 
                                             className="text-white/70 hover:text-white transition-colors text-base py-2 px-3 rounded-lg hover:bg-white/5"
                                             onClick={() => setIsMobileMenuOpen(false)}
                                         >

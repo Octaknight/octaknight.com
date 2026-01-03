@@ -11,17 +11,20 @@ const solutions = [
     title: 'Robotics',
     icon: <RoboticArm />,
     comingSoon: true,
+    id: "robotics",
   },
   {
     title: 'Tool Management',
     icon: aotmuSvgUrl,
     comingSoon: false,
     explore: true,
+    id: "tool-management",
   },
   {
     title: 'IoT Devices',
     icon: iotSvgUrl,
     comingSoon: true,
+    id: "iot-devices",
   },
 ];
 
@@ -73,13 +76,16 @@ export default function Solutions() {
               className="contents"
             >
             <motion.div
+              layout
               key={sol.title}
+              id={sol.id}
               className="relative h-[300px] md:h-full rounded-2xl border transition-colors duration-500 backdrop-blur-sm overflow-hidden cursor-pointer"
               onHoverStart={() => setHovered(sol.title)}
               variants={cardVariants}
               animate={isHovered ? 'hovered' : 'inactive'}
               transition={{ type: 'spring', stiffness: 400, damping: 30, duration: 0.5 }}
               style={{
+                willChange: 'flex-grow',
                 borderColor: isHovered
                   ? 'rgba(250, 204, 21, 0.4)' 
                   : 'rgba(63, 63, 70, 0.5)',
