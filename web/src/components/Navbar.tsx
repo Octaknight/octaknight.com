@@ -53,8 +53,8 @@ export default function Navbar({page}: {page: string}) {
 
     const navDynamicClasses: any = {
         0: "py-4 px-4 md:px-8",
-        1: "py-4 px-4 md:py-3 md:px-6 md:mt-4 md:max-w-2xl md:bg-[#0E0E10] md:rounded-full md:shadow-lg",
-        2: "py-4 px-4 md:py-3 md:px-6 md:mt-4 md:max-w-3xl md:bg-[#0E0E10] md:rounded-full md:shadow-lg",
+        1: "py-4 px-4 md:py-3 md:px-6 md:mt-4 md:max-w-2xl bg-[#0E0E10]/90 backdrop-blur-md md:bg-[#0E0E10] md:rounded-full md:shadow-lg",
+        2: "py-4 px-4 md:py-3 md:px-6 md:mt-4 md:max-w-3xl bg-[#0E0E10]/90 backdrop-blur-md md:bg-[#0E0E10] md:rounded-full md:shadow-lg",
         3: "py-4 px-4 md:px-8"
     };
     
