@@ -19,7 +19,7 @@ export default function Hero() {
 
             {/* Your content (z-10) */}
             <div className="relative max-w-3xl mx-auto px-4 mt-0 md:-mt-24 z-10">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bricolage text-white leading-snug animate-fade-in-up">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sansation text-white leading-snug animate-fade-in-up">
                     Engineering the Next <br />
                     <span className="text-[var(--color-primary-400)]">Industrial Revolution</span>
                 </h1>

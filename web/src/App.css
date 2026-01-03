@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
 @font-face {
   font-family: 'Satoshi';
@@ -24,7 +23,6 @@
 
 /* Root font configuration */
 :root {
-  --font-hero: 'Bricolage Grotesque', sans-serif;
   --font-heading: 'Sansation', sans-serif;
   --font-body: 'Satoshi', sans-serif;
 }
@@ -34,6 +32,15 @@ body {
   font-family: var(--font-body);
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+}
+
 .font-satoshi {
   font-family: var(--font-body);
 }
@@ -41,8 +48,4 @@ body {
 .font-sansation {
   font-family: var(--font-heading);
   font-weight: 700;
-}
-
-.font-bricolage {
-  font-family: var(--font-hero);
 }

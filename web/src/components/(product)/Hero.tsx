@@ -11,7 +11,7 @@ export default function Hero() {
             
             <div className="absolute inset-0 z-20 container mx-auto px-4 flex flex-col items-center justify-center text-center pointer-events-none">
                 <div className="pointer-events-auto">
-                    <h1 className="text-5xl md:text-7xl font-bricolage font-bold text-white tracking-tight leading-none mb-5 animate-fade-in-up">
+                    <h1 className="text-5xl md:text-7xl font-sansation font-bold text-white tracking-tight leading-none mb-5 animate-fade-in-up">
                         AOTM<span className="text-[var(--color-primary-400)] ml-2">I</span> <br />
                         XL
                     </h1>

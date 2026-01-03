@@ -9,7 +9,7 @@ export default function Featured(){
     };
 
   return (
-    <div className="flex min-h-screen mt-20 flex-col items-center justify-center overflow-hidden bg-black p-4 font-['Inter'] md:p-8">
+    <div className="flex min-h-screen mt-20 flex-col items-center justify-center overflow-hidden bg-black p-4 md:p-8">
       <section className="flex flex-col font-satoshi items-center justify-center w-full max-w-7xl mx-auto px-4">
         <h2 className="text-center text-white text-3xl md:text-5xl font-semibold mb-5">
             Featured <span className="text-[var(--color-primary-400)]">Projects</span>
