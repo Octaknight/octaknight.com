@@ -53,8 +53,8 @@ export default function Navbar({page}: {page: string}) {
 
     const navDynamicClasses: any = {
         0: "py-4 px-4 md:px-8",
-        1: "py-4 px-4 md:py-3 md:px-6 md:mt-4 md:max-w-2xl md:bg-[#0E0E10] md:rounded-full md:shadow-lg",
-        2: "py-4 px-4 md:py-3 md:px-6 md:mt-4 md:max-w-3xl md:bg-[#0E0E10] md:rounded-full md:shadow-lg",
+        1: "py-4 px-4 md:py-3 md:px-6 md:mt-4 md:max-w-2xl bg-[#0E0E10]/90 backdrop-blur-md md:bg-[#0E0E10] md:rounded-full md:shadow-lg",
+        2: "py-4 px-4 md:py-3 md:px-6 md:mt-4 md:max-w-3xl bg-[#0E0E10]/90 backdrop-blur-md md:bg-[#0E0E10] md:rounded-full md:shadow-lg",
         3: "py-4 px-4 md:px-8"
     };
     
@@ -80,7 +80,7 @@ export default function Navbar({page}: {page: string}) {
                 transition={{ type: "spring", stiffness: 170, damping: 30, duration: 0.1 }}
                 className={`${navBaseClasses} ${navDynamicClasses[navState]} ${isToolsPage ? 'backdrop-blur-md bg-black/20 border-b border-white/5' : ''}`}
             >
-                <div className="flex items-center space-x-2 sm:space-x-4 overflow-hidden">
+                <div className="flex items-center overflow-hidden">
                     <Link to="/" className="cursor-pointer flex items-center space-x-2 sm:space-x-4">
                         <motion.img
                             layout
@@ -89,17 +89,15 @@ export default function Navbar({page}: {page: string}) {
                             className={`${navState > 0 ? 'h-8 w-8 sm:h-10 sm:w-10' : 'h-7 w-7 sm:h-8 sm:w-8'}`}
                         />
                         <AnimatePresence>
-                            {navState === 0 && (
                                 <motion.span
                                     initial={{ opacity: 0, x: -20 }}
                                     animate={{ opacity: 1, x: 0 }}
                                     exit={{ opacity: 0, x: -20, transition: { duration: 0.2 } }}
                                     transition={{ duration: 0.3, ease: 'easeInOut' }}
-                                    className="text-white/80 hover:text-white text-base sm:text-xl font-sansation whitespace-nowrap hidden xs:block"
+                                    className="text-white/80 hover:text-white text-base sm:text-xl font-sansation whitespace-nowrap"
                                 >
                                     OCTAKNIGHT LABS
                                 </motion.span>
-                            )}
                         </AnimatePresence>
                     </Link>
                 </div>
@@ -144,9 +142,9 @@ export default function Navbar({page}: {page: string}) {
                                 transition={{ duration: 0.2 }}
                                 className={solutionsLinkContainerClasses}
                             >
-                                <a href="#robotics" className="text-white/60 hover:text-white transition-colors">Robotics</a>
-                                <a href="#tool-management" className="text-white/60 hover:text-white transition-colors whitespace-nowrap">Tool Management</a>
-                                <a href="#iot-devices" className="text-white/60 hover:text-white transition-colors">IoT devices</a>
+                                <Link to="/coming-soon" className="text-white/60 hover:text-white transition-colors">Robotics</Link>
+                                <Link to="/tool-management" className="text-white/60 hover:text-white transition-colors whitespace-nowrap">Tool Management</Link>
+                                <Link to="/coming-soon" className="text-white/60 hover:text-white transition-colors">IoT devices</Link>
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -246,21 +244,21 @@ export default function Navbar({page}: {page: string}) {
                                 ) : (
                                     <>
                                         <a 
-                                            href="#robotics" 
+                                            href="/coming-soon" 
                                             className="text-white/70 hover:text-white transition-colors text-base py-2 px-3 rounded-lg hover:bg-white/5"
                                             onClick={() => setIsMobileMenuOpen(false)}
                                         >
                                             Robotics
                                         </a>
                                         <a 
-                                            href="#tool-management" 
+                                            href="/tool-management" 
                                             className="text-white/70 hover:text-white transition-colors text-base py-2 px-3 rounded-lg hover:bg-white/5"
                                             onClick={() => setIsMobileMenuOpen(false)}
                                         >
                                             Tool Management
                                         </a>
                                         <a 
-                                            href="#iot-devices" 
+                                            href="/coming-soon" 
                                             className="text-white/70 hover:text-white transition-colors text-base py-2 px-3 rounded-lg hover:bg-white/5"
                                             onClick={() => setIsMobileMenuOpen(false)}
                                         >

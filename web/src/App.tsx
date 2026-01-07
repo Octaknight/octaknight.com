@@ -1,4 +1,5 @@
 import './App.css';
+import ScrollToTop from './components/ScrollToTop';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Landing from './pages/Landing';
 import Contact from './pages/Contact';
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/contact" element={<Contact />} />

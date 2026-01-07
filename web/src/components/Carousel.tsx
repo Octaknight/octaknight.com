@@ -313,9 +313,9 @@ export const EmblaCarousel: React.FC<PropType> = (props) => {
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex touch-pan-y ml-[-1rem]">
           {slides.map((slide, index) => (
-            <div className="flex-[0_0_80%] min-w-0 pl-4" key={slide.index}>
-              <div className="rounded-[1.8rem] h-[700px] overflow-hidden relative">
-                <div className="embla-parallax-layer relative h-[800px] w-full flex justify-center">
+            <div className="flex-[0_0_100%] md:flex-[0_0_80%] min-w-0 pl-4" key={slide.index}>
+              <div className="rounded-[1.8rem] h-[500px] md:h-[700px] overflow-hidden relative">
+                <div className="embla-parallax-layer relative h-[600px] md:h-[800px] w-full flex justify-center">
                   <img
                     className="max-w-none flex-[0_0_calc(115%_+_2rem)] object-cover w-full h-full"
                     src={`https://pub-15fcb55ecf4f42e689cf4e7e1a4737ad.r2.dev/placeholders/${slide.index}.png`}

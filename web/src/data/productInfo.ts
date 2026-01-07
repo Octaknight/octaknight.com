@@ -1,17 +1,84 @@
+
+
 export const products = [
-{
-    id: 1,
-    name: "AOTM U",
-    description: "Precision engineering meets adaptive intelligence.",
-    image: "/assets/product/Hero.png",
-    
-
-},
-{
-    id: 2,
-    name: "AOTM I",
-    description: "Precision engineering meets adaptive intelligence.",
-    image: "/assets/product/Hero.png",
-
-}
-]
+    {
+        id: 1,
+        name: "Robotic Gripper",
+        description: "Precision engineering meets adaptive intelligence.",
+        category: "End Effectors",
+        solution: "Robotics",
+        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800",
+        date: "24 Feb 2024",
+        bgColor: "bg-[#1a1a1a]",
+    },
+    {
+        id: 2,
+        name: "Precision Sensor",
+        description: "Advanced sensing for complex environments.",
+        category: "Sensing",
+        solution: "IoT Devices",
+        image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800",
+        date: "22 Mar 2024",
+        bgColor: "bg-[#2a2a2a]",
+    },
+    {
+        id: 3,
+        name: "Assembly Arm",
+        description: "High-speed assembly automation.",
+        category: "Robotics",
+        solution: "Robotics",
+        image: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&q=80&w=800",
+        date: "24 Jan 2024",
+        bgColor: "bg-[var(--color-primary-500)]",
+    },
+    {
+        id: 4,
+        name: "Vision System X",
+        description: "AI-powered visual inspection.",
+        category: "Vision",
+        solution: "Robotics",
+        image: "https://www.mrmoco.com/nitropack_static/SfxDVJRWawUqJxDlpmLKnXlLCUQzkCAu/assets/images/optimized/rev-7eb4814/www.mrmoco.com/wp-content/uploads/2024/12/Bolt-Mobile.png",
+        date: "10 Apr 2024",
+        bgColor: "bg-[#1e1e1e]",
+    },
+    {
+        id: 5,
+        name: "Hydraulic Pump",
+        description: "Heavy-duty power for industrial bots.",
+        category: "Power",
+        solution: "Tool Management",
+        image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800",
+        date: "05 May 2024",
+        bgColor: "bg-[#252525]",
+    },
+    {
+        id: 6,
+        name: "Control Unit Pro",
+        description: "Centralized control for synchronized motion.",
+        category: "Control",
+        solution: "IoT Devices",
+        image: "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&q=80&w=800",
+        date: "15 Jun 2024",
+        bgColor: "bg-[#333333]",
+    },
+    {
+        id: 7,
+        name: "Safety Barrier",
+        description: "Intelligent workspace protection.",
+        category: "Safety",
+        solution: "Tool Management",
+        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800",
+        date: "20 Jul 2024",
+        bgColor: "bg-[#1a1a1a]",
+    },
+    {
+        id: 8,
+        name: "Linear Actuator",
+        description: "Precise linear motion control.",
+        category: "Motion",
+        solution: "Robotics",
+        image: "https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&q=80&w=800",
+        date: "01 Aug 2024",
+        bgColor: "bg-[#2a2a2a]",
+    }
+];

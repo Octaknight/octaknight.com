@@ -4,11 +4,12 @@ import CalButton from '../CalButton';
 
 export default function Hero() {
     return(
-        <div className="Hero relative min-h-screen flex items-center justify-center bg-transparent text-center overflow-hidden">
+        <div className="Hero relative min-h-[100dvh] flex items-center justify-center bg-transparent text-center overflow-hidden">
             <video
                 autoPlay
                 muted
                 playsInline
+                preload="auto"
                 className="absolute top-0 left-0 w-full h-full object-cover z-0"
             >
                 <source src="/octaknight.mp4" type="video/mp4" />
@@ -18,8 +19,8 @@ export default function Hero() {
             <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-5"></div>
 
             {/* Your content (z-10) */}
-            <div className="relative max-w-3xl mx-auto px-4 -mt-24 z-10">
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bricolage text-white leading-snug animate-fade-in-up">
+            <div className="relative max-w-3xl mx-auto px-4 mt-0 md:-mt-24 z-10">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-sansation text-white leading-snug animate-fade-in-up">
                     Engineering the Next <br />
                     <span className="text-[var(--color-primary-400)]">Industrial Revolution</span>
                 </h1>

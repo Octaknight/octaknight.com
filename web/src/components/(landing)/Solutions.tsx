@@ -11,17 +11,20 @@ const solutions = [
     title: 'Robotics',
     icon: <RoboticArm />,
     comingSoon: true,
+    id: "robotics",
   },
   {
     title: 'Tool Management',
     icon: aotmuSvgUrl,
     comingSoon: false,
     explore: true,
+    id: "tool-management",
   },
   {
     title: 'IoT Devices',
     icon: iotSvgUrl,
     comingSoon: true,
+    id: "iot-devices",
   },
 ];
 
@@ -51,17 +54,17 @@ export default function Solutions() {
   };
 
   return (
-    <div className="h-[1000px] w-full bg-black text-white flex flex-col items-center justify-center p-4 md:p-8 overflow-hidden">
-      <h2 className="text-3xl md:text-5xl mt-30 font-bold mb-4 text-zinc-200 text-center">
+    <div className="min-h-screen w-full bg-black text-white flex flex-col items-center justify-center p-4 md:p-8 overflow-hidden">
+      <h2 className="text-3xl md:text-5xl mt-20 md:mt-30 font-bold mb-4 text-zinc-200 text-center">
         Explore Our Solutions
       </h2>
-      <p className="text-lg text-zinc-400 mb-16 max-w-2xl text-center">
+      <p className="text-lg text-zinc-400 mb-8 md:mb-16 max-w-2xl text-center">
         Discover our ecosystem of advanced robotics and smart-factory solutions.
       </p>
 
 
       <div
-        className="flex w-full max-w-7xl h-[700px] gap-4"
+        className="flex flex-col md:flex-row w-full max-w-7xl h-auto md:h-[700px] gap-4"
         onMouseLeave={() => setHovered('Tool Management')}
       >
         {solutions.map((sol:any) => {
@@ -73,13 +76,16 @@ export default function Solutions() {
               className="contents"
             >
             <motion.div
+              layout
               key={sol.title}
-              className="relative h-full rounded-2xl border transition-colors duration-500 backdrop-blur-sm overflow-hidden cursor-pointer"
+              id={sol.id}
+              className="relative h-[300px] md:h-full rounded-2xl border transition-colors duration-500 backdrop-blur-sm overflow-hidden cursor-pointer"
               onHoverStart={() => setHovered(sol.title)}
               variants={cardVariants}
               animate={isHovered ? 'hovered' : 'inactive'}
               transition={{ type: 'spring', stiffness: 400, damping: 30, duration: 0.5 }}
               style={{
+                willChange: 'flex-grow',
                 borderColor: isHovered
                   ? 'rgba(250, 204, 21, 0.4)' 
                   : 'rgba(63, 63, 70, 0.5)',

@@ -8,7 +8,7 @@ export default function Specs() {
         <div className="max-w-7xl mx-auto w-full">
           {/* Section Title */}
           <div className="mb-12">
-            <h2 className="text-2xl font-bricolage font-light tracking-tight text-zinc-100 mb-2">
+            <h2 className="text-2xl font-sansation font-light tracking-tight text-zinc-100 mb-2">
               Specifications
             </h2>
             <div className="w-16 h-px bg-[var(--color-primary-400)]"></div>

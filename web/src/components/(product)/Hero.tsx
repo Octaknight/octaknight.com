@@ -11,16 +11,16 @@ export default function Hero() {
             
             <div className="absolute inset-0 z-20 container mx-auto px-4 flex flex-col items-center justify-center text-center pointer-events-none">
                 <div className="pointer-events-auto">
-                    <h1 className="text-5xl md:text-7xl font-bricolage font-bold text-white tracking-tight leading-none mb-5 animate-fade-in-up">
-                        Octa<span className="text-[var(--color-primary-400)]">Arm</span> <br />
-                        Series X
+                    <h1 className="text-5xl md:text-7xl font-sansation font-bold text-white tracking-tight leading-none mb-5 animate-fade-in-up">
+                        AOTM<span className="text-[var(--color-primary-400)] ml-2">I</span> <br />
+                        XL
                     </h1>
                     
-                    <p className="text-lg text-zinc-400 font-satoshi max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
-                        Precision engineering meets adaptive intelligence.
+                    <p className="text-xl text-zinc-300 font-satoshi font-medium tracking-wide max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
+                        The ultimate tool management system for precision dispensing.
                     </p>
 
-                    <p className="text-lg text-zinc-400 font-satoshi mb-5 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
+                    <p className="text-xl text-zinc-300 font-satoshi font-medium tracking-wide mb-8 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
                         The future of automated assembly is here.
                     </p>
 
@@ -53,9 +53,9 @@ export default function Hero() {
 
             <div className="absolute bottom-0 w-full h-full z-10 animate-fade-in-up animation-delay-600 pointer-events-none">
                 <img 
-                    src="/assets/product/Hero.png" 
+                    src="https://pub-05ef32feaa264b41bf7b2f560600c73e.r2.dev/tools/products/AOTM_I_XL_hero.png" 
                     alt="Robotic Arm Series X" 
-                    className="w-full h-full object-contain object-bottom"
+                    className="w-full h-full object-contain mt-20 object-bottom"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
                 <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-40"></div>
