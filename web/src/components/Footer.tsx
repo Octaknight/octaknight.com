@@ -149,7 +149,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="hidden md:flex relative w-full h-[600px] overflow-hidden justify-center items-end opacity-40 hover:opacity-100 transition-opacity duration-700">
+        <div className="hidden md:flex cursor-crosshair relative w-full h-[600px] overflow-hidden justify-center items-end opacity-40 hover:opacity-100 transition-opacity duration-700">
           <ParticleLogo src="/logo.png" height={600} />
           
           <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-transparent pointer-events-none"></div>
