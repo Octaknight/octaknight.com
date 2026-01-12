@@ -1,8 +1,8 @@
-import Navbar from '../components/Navbar';
-import Hero from '../components/(product)/Hero';
-import Images from '../components/(product)/Images';
-import Assets from '../components/(product)/Assets';
-import Specs from '../components/(product)/Specs';
+import Navbar from '../../components/Navbar';
+import Hero from '../../components/(product)/Hero';
+import Images from '../../components/(product)/Images';
+import Assets from '../../components/(product)/Assets';
+import Specs from '../../components/(product)/Specs';
 import { products } from '@/data/productInfo';
 
 export default function Product() {

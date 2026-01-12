@@ -98,22 +98,22 @@
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.922 0 0);
   --primary-foreground: oklch(0.205 0 0);
-  
+
   /* Using your new secondary color */
   --secondary: #0E0E10;
   --secondary-foreground: oklch(0.985 0 0);
-  
+
   --muted: oklch(0.269 0 0);
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);
-  
+
   /* Using your new primary color for borders */
   --border: var(--color-primary-800);
   --input: oklch(1 0 0 / 15%);
   --ring: var(--color-primary-500);
-  
+
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -146,15 +146,72 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
 @keyframes pulse-slow {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.7; }
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
 }
+
 .animate-pulse-slow {
   animation: pulse-slow 8s ease-in-out infinite;
+}
+
+/* Animation keyframes */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation utility classes */
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+/* Delay utility classes */
+.delay-300 {
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+
+.delay-700 {
+  animation-delay: 0.7s;
+  opacity: 0;
 }
