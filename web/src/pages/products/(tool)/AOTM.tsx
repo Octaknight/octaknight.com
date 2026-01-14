@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/(product)/(tool)/aotm/Hero';
 import AOTMAdvantage from '@/components/(product)/(tool)/aotm/AOTMAdvantage';
+import ProductGallery from '@/components/(product)/(tool)/aotm/ProductGallery';
 
 export default function AOTM() {
     return (
@@ -10,7 +11,6 @@ export default function AOTM() {
             <div className="relative">
                 <Hero />
                 
-                {/* Button Bar at bottom of Hero - visible initially */}
                 <div className="absolute bottom-6 md:bottom-8 left-0 right-0 z-30 animate-fade-in-up delay-300 w-full flex justify-center px-4">
                     <div className="flex items-center justify-between md:justify-start gap-4 md:gap-6 px-5 py-2.5 md:px-6 md:py-3 rounded-full border border-white/10 bg-black/40 backdrop-blur-2xl shadow-[0_0_40px_rgba(0,0,0,0.5)] hover:border-white/20 transition-colors duration-500 w-full max-w-sm md:w-auto md:max-w-none">
                         <div className="hidden md:flex items-center gap-3">
@@ -38,14 +38,14 @@ export default function AOTM() {
                     </div>
                 </div>
             </div>
+            
+            <ProductGallery />
 
             <div className='h-[200vh] w-full items-center pt-[200px] pb-[200px] justify-center text-center'>
                 Adding more content
             </div>
             
-            {/* <ProductGallery />
-            
-            <Specifications />
+            {/* <Specifications />
             
             <AOTMEcosystem />
             

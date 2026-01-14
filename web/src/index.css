@@ -215,3 +215,13 @@
   animation-delay: 0.7s;
   opacity: 0;
 }
+
+/* Scrollbar hiding utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
