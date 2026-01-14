@@ -1,5 +1,3 @@
-import { ArrowRight } from 'lucide-react';
-
 export default function Hero() {
     return (
         <section className="relative h-screen w-full overflow-hidden bg-black flex flex-col items-center justify-center">
@@ -47,34 +45,6 @@ export default function Hero() {
                                 AOTM XL
                             </span>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <div className="absolute bottom-6 md:bottom-8 z-30 animate-fade-in-up delay-300 w-full flex justify-center px-4">
-                <div className="flex items-center justify-between md:justify-start gap-4 md:gap-6 px-5 py-2.5 md:px-6 md:py-3 rounded-full border border-white/10 bg-black/40 backdrop-blur-2xl shadow-[0_0_40px_rgba(0,0,0,0.5)] hover:border-white/20 transition-colors duration-500 w-full max-w-sm md:w-auto md:max-w-none">
-                    <div className="hidden md:flex items-center gap-3">
-                        <span className="text-white/60 text-xs font-bold tracking-[0.2em] uppercase">
-                            AOTM Series
-                        </span>
-                    </div>
-
-                    {/* Divider - Desktop Only */}
-                    <div className="hidden md:block w-px h-4 bg-white/10" />
-                    
-                    {/* Buttons */}
-                    <div className="flex items-center justify-between w-full md:w-auto gap-4">
-                        <button className="cursor-pointer text-white/80 hover:text-white text-sm font-medium transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] whitespace-nowrap">
-                            View Specs
-                        </button>
-                        
-                        <button className="cursor-pointer group relative px-5 py-2 bg-[var(--color-primary-300)] text-black rounded-full font-bold text-sm hover:bg-[var(--color-primary-400)] transition-all duration-300 flex items-center gap-2 overflow-hidden">
-                            <span className="relative z-10">Order Now</span>
-                            <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
-                            
-                            {/* Hover Glow */}
-                            <div className="absolute inset-0 bg-[var(--color-primary-400)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                        </button>
                     </div>
                 </div>
             </div>

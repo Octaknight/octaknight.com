@@ -1,16 +1,31 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
 export default function Navbar({page}: {page: string}) {
     const [navState, setNavState] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
     const [isHidden, setIsHidden] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isStickyAOTM, setIsStickyAOTM] = useState(false);
 
     const isToolsPage = page.toLowerCase() === "tools" || page.toLowerCase() === "contact" || page.toLowerCase() === "about";
+    const isAOTMPage = page.toLowerCase() === "aotm";
 
     useEffect(() => {
+        // AOTM Page Sticky Button Logic
+        if (isAOTMPage) {
+            const handleAOTMScroll = () => {
+                const heroHeight = window.innerHeight;
+                setIsStickyAOTM(window.scrollY > heroHeight * 0.8);
+            };
+
+            window.addEventListener('scroll', handleAOTMScroll);
+            return () => window.removeEventListener('scroll', handleAOTMScroll);
+        }
+
+        // Original Navbar Logic
         if (isToolsPage) {
             setNavState(0);
             setIsHidden(false);
@@ -47,7 +62,7 @@ export default function Navbar({page}: {page: string}) {
             window.removeEventListener('scroll', handleScroll);
             window.removeEventListener('mousemove', handleMouseMove);
         };
-    }, [isToolsPage]);
+    }, [isToolsPage, isAOTMPage]);
 
     const navBaseClasses = "fixed top-0 left-1/2 -translate-x-1/2 w-full flex items-center justify-between z-50";
 
@@ -78,7 +93,7 @@ export default function Navbar({page}: {page: string}) {
                     opacity: shouldHide ? 0 : 1
                 }}
                 transition={{ type: "spring", stiffness: 170, damping: 30, duration: 0.1 }}
-                className={`${navBaseClasses} ${navDynamicClasses[navState]} ${isToolsPage ? 'backdrop-blur-md bg-black/20 border-b border-white/5' : ''}`}
+                className={`${navBaseClasses} ${navDynamicClasses[navState]} ${isToolsPage || isAOTMPage ? 'backdrop-blur-md bg-black/20 border-b border-white/5' : ''}`}
             >
                 <div className="flex items-center overflow-hidden">
                     <Link to="/" className="cursor-pointer flex items-center space-x-2 sm:space-x-4">
@@ -101,6 +116,39 @@ export default function Navbar({page}: {page: string}) {
                         </AnimatePresence>
                     </Link>
                 </div>
+
+                {isAOTMPage && (
+                <div
+                    className={`fixed top-0 left-0 flex justify-center mt-20 lg:mt-1 right-0 transition-all duration-500 ${
+                        isStickyAOTM
+                            ? 'translate-y-0 opacity-100'
+                            : '-translate-y-full opacity-0'
+                    }`}
+                >
+                    <div className="flex items-center gap-4 md:gap-6 px-5 py-2 md:px-6 md:py-2.5 rounded-full border border-white/10 bg-black/40 backdrop-blur-2xl shadow-[0_0_40px_rgba(0,0,0,0.5)] hover:border-white/20 transition-colors duration-500">
+                        <div className="hidden md:flex items-center gap-3">
+                            <span className="text-white/60 text-xs font-bold tracking-[0.2em] uppercase">
+                                AOTM Series
+                            </span>
+                        </div>
+
+                        <div className="hidden md:block w-px h-4 bg-white/10" />
+                            
+                        <div className="flex items-center gap-4">
+                            <button className="cursor-pointer text-white/80 hover:text-white text-sm font-medium transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] whitespace-nowrap">
+                                View Specs
+                            </button>
+                                
+                            <button className="cursor-pointer group relative px-4 py-1.5 bg-[var(--color-primary-300)] text-black rounded-full font-bold text-sm hover:bg-[var(--color-primary-400)] transition-all duration-300 flex items-center gap-2 overflow-hidden">
+                                <span className="relative z-10">Order Now</span>
+                                <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
+                                
+                                <div className="absolute inset-0 bg-[var(--color-primary-400)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
 
                 <div className="relative h-6 hidden md:flex items-center justify-end overflow-hidden">
                     <AnimatePresence mode="wait">
