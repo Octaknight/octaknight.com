@@ -43,7 +43,7 @@ const galleryItems: GalleryItem[] = [
 
 export default function ProductGallery() {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+    const [isAutoPlaying, setIsAutoPlaying] = useState(false);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const autoPlayTimerRef = useRef<NodeJS.Timeout | null>(null);
 
