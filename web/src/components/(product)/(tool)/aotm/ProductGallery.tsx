@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface GalleryItem {
     id: number;
@@ -44,6 +45,7 @@ const galleryItems: GalleryItem[] = [
 export default function ProductGallery() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState(false);
+    const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
     const autoPlayTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -68,7 +70,7 @@ export default function ProductGallery() {
     };
 
     useEffect(() => {
-        if (isAutoPlaying) {
+        if (isAutoPlaying && !selectedItem) {
             autoPlayTimerRef.current = setInterval(() => {
                 nextSlide();
             }, 5000);
@@ -79,7 +81,7 @@ export default function ProductGallery() {
                 clearInterval(autoPlayTimerRef.current);
             }
         };
-    }, [isAutoPlaying, currentIndex]);
+    }, [isAutoPlaying, currentIndex, selectedItem]);
 
     useEffect(() => {
         if (!scrollContainerRef.current) return;
@@ -113,6 +115,9 @@ export default function ProductGallery() {
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-sansation text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/60">
                     <span className="text-[var(--color-primary-400)]">AOTM</span> in Action
                 </h2>
+                <p className="text-lg md:text-xl text-white/80 mt-4">
+                    Automated tool management systems designed for precision-driven manufacturing.
+                </p>
             </div>
 
             <div className="relative">
@@ -154,13 +159,17 @@ export default function ProductGallery() {
                             onClick={() => {
                                 setCurrentIndex(index);
                                 scrollToItem(index);
+                                setSelectedItem(item);
                             }}
                         >
-                            <div className={`relative aspect-[16/10] rounded-3xl overflow-hidden bg-zinc-900 group cursor-pointer transition-all duration-500 ${
-                                index === currentIndex ? 'scale-100 opacity-100' : 'scale-95 opacity-60'
-                            }`}>
+                            <motion.div 
+                                layoutId={`card-${item.id}`}
+                                className={`relative aspect-[16/10] rounded-3xl overflow-hidden bg-zinc-900 group cursor-pointer transition-all duration-500 ${
+                                    index === currentIndex ? 'scale-100 opacity-100' : 'scale-95 opacity-60'
+                                }`}
+                            >
                                 {/* Image */}
-                                <img
+                                <motion.img
                                     src={item.image}
                                     alt={item.title}
                                     className={`w-full h-full object-cover transition-transform duration-700 ${
@@ -170,7 +179,7 @@ export default function ProductGallery() {
                                 
                                 {/* Gradient Overlay */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                            </div>
+                            </motion.div>
                         </div>
                     ))}
                 </div>
@@ -219,6 +228,48 @@ export default function ProductGallery() {
                     </button>
                 </div>
             </div>
+
+            {/* Expanded View Modal */}
+            <AnimatePresence>
+                {selectedItem && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8">
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            onClick={() => setSelectedItem(null)}
+                            className="absolute inset-0 bg-black/90 backdrop-blur-md"
+                        />
+                        <motion.div
+                            layoutId={`card-${selectedItem.id}`}
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            className="relative w-[95vw] h-[80vh] md:h-[90vh] bg-transparent z-10 flex items-center justify-center"
+                            onClick={() => setSelectedItem(null)}
+                        >
+                            <motion.img
+                                src={selectedItem.image}
+                                alt={selectedItem.title}
+                                className="w-full h-full object-contain"
+                                onClick={(e) => e.stopPropagation()}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent pointer-events-none" />
+                            
+                            <button
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setSelectedItem(null);
+                                }}
+                                className="absolute top-4 right-4 md:top-8 md:right-8 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/50 backdrop-blur-md flex items-center justify-center text-white hover:bg-white/20 transition-colors cursor-pointer z-20"
+                            >
+                                <X className="w-5 h-5 md:w-6 md:h-6" />
+                            </button>
+
+{/* Content removed for minimal view */}
+                        </motion.div>
+                    </div>
+                )}
+            </AnimatePresence>
         </section>
     );
 }

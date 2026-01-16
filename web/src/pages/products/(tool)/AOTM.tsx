@@ -2,6 +2,8 @@ import Navbar from '@/components/Navbar';
 import Hero from '@/components/(product)/(tool)/aotm/Hero';
 import AOTMAdvantage from '@/components/(product)/(tool)/aotm/AOTMAdvantage';
 import ProductGallery from '@/components/(product)/(tool)/aotm/ProductGallery';
+import InitialVideo from '@/components/(product)/(tool)/aotm/InitialVideo';
+import Specifications from '@/components/(product)/(tool)/aotm/Specifications';
 
 export default function AOTM() {
     return (
@@ -39,15 +41,17 @@ export default function AOTM() {
                 </div>
             </div>
             
+            <InitialVideo />
+            
             <ProductGallery />
+            
+            <Specifications />
 
             <div className='h-[200vh] w-full items-center pt-[200px] pb-[200px] justify-center text-center'>
                 Adding more content
             </div>
             
-            {/* <Specifications />
-            
-            <AOTMEcosystem />
+            {/*<AOTMEcosystem />
             
             <Intelligence />
             
