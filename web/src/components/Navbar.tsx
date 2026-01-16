@@ -14,18 +14,16 @@ export default function Navbar({page}: {page: string}) {
     const isAOTMPage = page.toLowerCase() === "aotm";
 
     useEffect(() => {
-        // AOTM Page Sticky Button Logic
         if (isAOTMPage) {
             const handleAOTMScroll = () => {
                 const heroHeight = window.innerHeight;
-                setIsStickyAOTM(window.scrollY > heroHeight * 0.8);
+                setIsStickyAOTM(window.scrollY > heroHeight * 0.9);
             };
 
             window.addEventListener('scroll', handleAOTMScroll);
             return () => window.removeEventListener('scroll', handleAOTMScroll);
         }
 
-        // Original Navbar Logic
         if (isToolsPage) {
             setNavState(0);
             setIsHidden(false);
