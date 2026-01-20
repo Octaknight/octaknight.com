@@ -14,7 +14,7 @@ export default function Specifications() {
             <div className="max-w-7xl mx-auto">
                 <div className="mb-20 text-center">
                     <h2 className="text-4xl md:text-6xl font-sansation font-bold text-white mb-6">
-                        Specifications
+                        Product <span className="text-[var(--color-primary-400)]">Specifications</span>
                     </h2>
                     <p className="text-xl max-w-3xl mx-auto text-zinc-400">
                         Explore the technical foundations metrics that define the AOTM series.
