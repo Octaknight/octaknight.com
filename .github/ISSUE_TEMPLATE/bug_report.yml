@@ -3,61 +3,54 @@ description: Report something on the website that is broken or not working corre
 title: "[Bug]: "
 labels: ["bug", "triage"]
 body:
-
-* type: markdown
-  attributes:
-  value: |
-  **Thanks for reporting an issue!**
-  Please share enough detail so we can reproduce and fix it.
-
-* type: textarea
-  id: description
-  attributes:
-  label: What happened?
-  description: Describe the issue clearly and concisely.
-  placeholder: "The Contact form shows an error after clicking Submit."
-  validations:
-  required: true
-
-* type: textarea
-  id: steps
-  attributes:
-  label: Steps to reproduce
-  description: How can we reproduce the issue?
-  placeholder: |
-  1. Go to [https://example.com/contact](https://example.com/contact)
-  2. Fill out the form
-  3. Click Submit
-  validations:
-  required: true
-
-* type: textarea
-  id: expected
-  attributes:
-  label: Expected behavior
-  description: What did you expect to happen?
-
-* type: dropdown
-  id: impact
-  attributes:
-  label: Impact
-  description: How badly does this affect usage?
-  options:
-  - Cosmetic (visual or minor issue)
-  - Functional (feature not working as expected)
-  - Blocking (page or core action unusable)
-  validations:
-  required: true
-
-* type: textarea
-  id: environment
-  attributes:
-  label: Device / Browser
-  description: Browser, OS, or device type.
-  placeholder: "Chrome on Windows, Safari on iPhone"
-
-* type: textarea
-  id: evidence
-  attributes:
-  label: Screenshots or recordings
-  description: Drag and drop images or videos here (optional).
+  - type: markdown
+    attributes:
+      value: |
+        **Thanks for reporting an issue!**
+        Please share enough detail so we can reproduce and fix it.
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the issue clearly and concisely.
+      placeholder: "The Contact form shows an error after clicking Submit."
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: How can we reproduce the issue?
+      placeholder: |
+        1. Go to [https://octaknight.com/contact](https://octaknight.com/contact)
+        2. Fill out the form
+        3. Click Submit
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What did you expect to happen?
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impact
+      description: How badly does this affect usage?
+      options:
+        - Cosmetic (visual or minor issue)
+        - Functional (feature not working as expected)
+        - Blocking (page or core action unusable)
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Device / Browser
+      description: Browser, OS, or device type.
+      placeholder: "Chrome on Windows, Safari on iPhone"
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots or recordings
+      description: Drag and drop images or videos here (optional).
