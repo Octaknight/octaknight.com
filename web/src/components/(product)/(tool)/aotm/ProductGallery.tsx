@@ -111,7 +111,7 @@ export default function ProductGallery() {
 
     return (
         <section className="relative bg-zinc-950 py-20 overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6 mb-12">
+            <div className="max-w-7xl mx-auto px-6 mb-24">
                 <h2 className="text-4xl md:text-5xl lg:text-6xl font-sansation text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-white/60">
                     <span className="text-[var(--color-primary-400)]">AOTM</span> in Action
                 </h2>
@@ -141,7 +141,6 @@ export default function ProductGallery() {
                     </button>
                 )}
 
-                {/* Scroll Container - showing multiple cards, first card centered */}
                 <div
                     ref={scrollContainerRef}
                     className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide scroll-smooth gap-6"
@@ -168,7 +167,6 @@ export default function ProductGallery() {
                                     index === currentIndex ? 'scale-100 opacity-100' : 'scale-95 opacity-60'
                                 }`}
                             >
-                                {/* Image */}
                                 <motion.img
                                     src={item.image}
                                     alt={item.title}
@@ -177,16 +175,13 @@ export default function ProductGallery() {
                                     }`}
                                 />
                                 
-                                {/* Gradient Overlay */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                             </motion.div>
                         </div>
                     ))}
                 </div>
 
-                {/* Navigation Dots */}
                 <div className="flex items-center justify-center gap-4 mt-8">
-                    {/* Dots */}
                     <div className="flex items-center gap-2">
                         {galleryItems.map((item) => (
                             <button
@@ -207,7 +202,6 @@ export default function ProductGallery() {
                         ))}
                     </div>
 
-                    {/* Play/Pause Button */}
                     <button
                         onClick={() => setIsAutoPlaying(!isAutoPlaying)}
                         className={`relative ml-2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition-all duration-300 cursor-pointer ${
@@ -229,7 +223,6 @@ export default function ProductGallery() {
                 </div>
             </div>
 
-            {/* Expanded View Modal */}
             <AnimatePresence>
                 {selectedItem && (
                     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8">
@@ -264,8 +257,6 @@ export default function ProductGallery() {
                             >
                                 <X className="w-5 h-5 md:w-6 md:h-6" />
                             </button>
-
-{/* Content removed for minimal view */}
                         </motion.div>
                     </div>
                 )}
