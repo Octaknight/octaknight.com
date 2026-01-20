@@ -1,0 +1,48 @@
+name: 💡 Website Improvement
+description: Suggest an improvement to content, design, or user experience.
+title: "[Improvement]: "
+labels: ["enhancement", "triage"]
+body:
+
+* type: markdown
+  attributes:
+  value: |
+  **Have a suggestion?**
+  Tell us how we can improve the website.
+
+* type: textarea
+  id: context
+  attributes:
+  label: What could be improved?
+  description: Describe the problem, gap, or opportunity.
+  placeholder: "It's not clear what industries this product is meant for."
+  validations:
+  required: true
+
+* type: textarea
+  id: suggestion
+  attributes:
+  label: Suggested improvement
+  description: If you have an idea, describe it here.
+  placeholder: "Add a short 'Industries We Serve' section on the homepage."
+
+* type: dropdown
+  id: type
+  attributes:
+  label: Type of improvement
+  options:
+  - Content / Copy
+  - Visual Design / UI
+  - User Experience / Flow
+  - Accessibility
+  - SEO / Performance
+  - Other
+  validations:
+  required: true
+
+* type: textarea
+  id: page
+  attributes:
+  label: Relevant page URL
+  description: Link to the page this relates to (if applicable).
+  placeholder: "[https://example.com/pricing](https://example.com/pricing)"
