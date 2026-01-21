@@ -8,6 +8,7 @@ import AOTMEcosystem from '@/components/(product)/(tool)/aotm/AOTMEcosystem';
 import Intelligence from '@/components/(product)/(tool)/aotm/Intelligence';
 // import SmarterByDesign from '@/components/(product)/(tool)/aotm/SmarterByDesign';
 import IndustryProblems from '@/components/(product)/(tool)/aotm/IndustryProblems';
+import CTASection from '@/components/(product)/(tool)/aotm/CTASection';
 
 export default function AOTM() {
     return (
@@ -60,6 +61,8 @@ export default function AOTM() {
             <IndustryProblems />
              
             <AOTMAdvantage />
+            
+            <CTASection />
         </div>
     );
 }
