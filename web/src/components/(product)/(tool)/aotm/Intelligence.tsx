@@ -64,7 +64,7 @@ export default function Intelligence() {
             <div className="max-w-7xl mx-auto relative z-10">
                 <div className="mb-32 text-center max-w-3xl mx-auto">
                     <h2 className="text-4xl md:text-6xl font-sansation font-bold text-white mb-8">
-                        Intelligence at Every Step
+                        Intelligence at <span className="text-[var(--color-primary-400)]">Every Step</span>
                     </h2>
                     <p className="text-xl text-zinc-400 font-sansation">
                         Complete visibility and control from the shop floor to the top floor.

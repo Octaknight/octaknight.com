@@ -31,7 +31,7 @@ const CoreValues = () => {
       <div className="container max-w-5xl px-4 mx-auto">
         <div className="mb-16 text-center">
           <h2 className="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-            The Principles That Guide Us
+            The Principles <span className="text-[var(--color-primary-400)]">That Guide Us</span>
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
             Our values are the foundation of our company and the blueprint for our success.

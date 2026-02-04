@@ -6,7 +6,7 @@ export default function AOTMEcosystem() {
             <div className="max-w-4xl mx-auto">
                 <div className="mb-24 text-center">
                     <h2 className="text-4xl md:text-6xl font-sansation font-bold text-white mb-6">
-                        The AOTM Ecosystem
+                        The AOTM <span className="text-[var(--color-primary-400)]">Ecosystem</span>
                     </h2>
                     <p className="text-xl text-zinc-400 font-medium font-sansation">
                         Hardware, Software, and Intelligence working as One

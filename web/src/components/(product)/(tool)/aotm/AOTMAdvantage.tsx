@@ -49,7 +49,7 @@ export default function AOTMAdvantage() {
             <div className="max-w-7xl mx-auto">
                 <div className="mb-12 md:mb-20 text-center">
                     <h2 className="text-3xl md:text-5xl font-sansation font-bold text-white mb-4">
-                        The AOTM Advantage
+                        The AOTM <span className="text-[var(--color-primary-400)]">Advantage</span>
                     </h2>
                     <p className="text-lg md:text-xl text-zinc-400">
                         A modern platform built to outperform legacy and local solutions.
