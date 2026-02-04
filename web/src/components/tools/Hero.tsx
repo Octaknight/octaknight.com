@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ArrowUpRight, ArrowUp } from "lucide-react";
 import { useState } from "react";
 import { products } from "@/data/productInfo";
@@ -17,7 +18,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="text-6xl md:text-8xl font-sansation font-bold tracking-tight leading-[0.9] max-w-4xl"
+            className="text-6xl md:text-8xl font-sansation tracking-tight leading-[0.9] max-w-4xl"
           >
             Optimize <br />
             Production. <br />
@@ -89,31 +90,35 @@ export default function Hero() {
                 key={tool.id} 
                 className={`
                     ${showAll ? 'w-full' : 'min-w-[300px] md:min-w-[400px] snap-start'}
-                    group cursor-pointer
                 `}
                 >
-                <div className={`relative aspect-[4/5] ${tool.bgColor} rounded-3xl overflow-hidden mb-6 transition-all duration-500 ease-out group-hover:scale-[1.02] border border-white/5 group-hover:border-[var(--color-primary-500)]/30 shadow-2xl shadow-black/50`}>
-                    <img 
-                    src={tool.image} 
-                    alt={tool.name}
-                    className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60 group-hover:opacity-100 transition-opacity duration-500 grayscale group-hover:grayscale-0"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-                    
-                    <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
-                        <div className="bg-[var(--color-primary-500)] p-3 rounded-full shadow-lg shadow-[var(--color-primary-500)]/20">
-                            <ArrowUpRight className="w-5 h-5 text-black" />
+                <Link to={tool.link || "#"} className="block group cursor-pointer h-full">
+                    <div className={`relative aspect-[4/5] ${tool.bgColor} rounded-3xl overflow-hidden mb-6 transition-all duration-500 ease-out group-hover:scale-[1.02] border border-white/5 group-hover:border-[var(--color-primary-500)]/30 shadow-2xl shadow-black/50`}>
+                        <img 
+                        src={tool.image} 
+                        alt={tool.name}
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+                        
+                        <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-10">
+                            <div className="bg-[var(--color-primary-500)] p-3 rounded-full shadow-lg shadow-[var(--color-primary-500)]/20">
+                                <ArrowUpRight className="w-5 h-5 text-black" />
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="space-y-1 px-2">
-                    <p className="text-xs text-[var(--color-primary-400)] font-mono uppercase tracking-wider">{tool.category}</p>
-                    <h3 className="text-2xl font-sansation font-bold text-white group-hover:text-[var(--color-primary-400)] transition-colors">
-                    {tool.name}
-                    </h3>
-                    <p className="text-sm text-neutral-500 font-satoshi">{tool.date}</p>
-                </div>
+                    <div className="space-y-1 px-2">
+                        <p className="text-xs text-[var(--color-primary-400)] font-mono uppercase tracking-wider">{tool.category}</p>
+                        <div className="flex items-center gap-2">
+                            <h3 className="text-2xl font-sansation font-bold text-white group-hover:text-[var(--color-primary-400)] transition-colors">
+                            {tool.name}
+                            </h3>
+                            <ArrowUpRight className="w-5 h-5 text-neutral-600 group-hover:text-[var(--color-primary-400)] transition-colors duration-300 transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </div>
+                        <p className="text-sm text-neutral-500 font-satoshi group-hover:text-neutral-400 transition-colors">{tool.date}</p>
+                    </div>
+                </Link>
                 </motion.div>
             ))}
           </AnimatePresence>
