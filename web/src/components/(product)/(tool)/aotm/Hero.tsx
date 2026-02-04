@@ -21,27 +21,22 @@ export default function Hero() {
 
             <div className="relative z-20 w-full h-full flex flex-col items-center justify-center">
                 
-                <div className="relative w-full h-full flex items-center justify-center">
+                <div className="relative w-full h-full flex items-center justify-center p-4">
                     <div className="absolute inset-0 bg-yellow-400/10 blur-[120px] rounded-full opacity-60" />
                     
-                    <div className="relative w-full h-full max-w-[1600px] max-h-[90vh] flex items-center justify-center">
+                    <div className="relative aspect-[16/9] w-full max-w-[177.78vh] max-h-[90vh] flex items-center justify-center">
                         <img 
                             src="/assets/aotm/AOTM_Hero.png" 
                             alt="AOTM Machine" 
-                            className="relative w-full h-full object-contain drop-shadow-2xl"
+                            className="w-full h-full object-contain drop-shadow-2xl"
                         />
-
-                        {/* Product Labels - Using container-relative positioning */}
-                        {/* AOTM I - Left/Small Machine */}
-                        <div className="absolute left-[calc(50%-20vw)] top-[calc(50%vh)] sm:left-[calc(50%-18vw)] sm:top-[calc(50%+1vh)] md:left-[calc(50%-16vw)] md:top-[50%] lg:left-[calc(50%-14vw)] lg:top-[calc(50%-2vh)] flex flex-col items-center animate-fade-in delay-500">
-                            <span className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-white/20 bg-black/60 backdrop-blur-xl text-white font-bold text-xs sm:text-sm md:text-base tracking-widest shadow-[0_0_15px_rgba(0,0,0,0.5)] whitespace-nowrap">
+                        <div className="absolute left-[36%] top-[85%] flex flex-col items-center animate-fade-in delay-500">
+                            <span className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-white/20 bg-black/60 backdrop-blur-xl text-white font-bold text-[10px] sm:text-xs md:text-sm lg:text-base tracking-widest shadow-[0_0_15px_rgba(0,0,0,0.5)] whitespace-nowrap">
                                 AOTM I
                             </span>
                         </div>
-
-                        {/* AOTM XL - Right/Big Machine */}
-                        <div className="absolute right-[calc(50%-38vw)] top-[calc(50%-12vh)] sm:right-[calc(50%-36vw)] sm:top-[calc(50%-20vh)] md:right-[calc(50%-34vw)] md:top-[calc(50%-22vh)] lg:right-[calc(50%-32vw)] lg:top-[calc(50%-24vh)] xl:right-[calc(50%-34vw)] xl:top-[calc(50%-30vh)] flex flex-col items-center animate-fade-in delay-700">
-                            <span className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-white/20 bg-black/60 backdrop-blur-xl text-white font-bold text-xs sm:text-sm md:text-base tracking-widest shadow-[0_0_15px_rgba(0,0,0,0.5)] whitespace-nowrap">
+                        <div className="absolute left-[82%] top-[88%] -translate-x-1/2 flex flex-col items-center animate-fade-in delay-700">
+                            <span className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-white/20 bg-black/60 backdrop-blur-xl text-white font-bold text-[10px] sm:text-xs md:text-sm lg:text-base tracking-widest shadow-[0_0_15px_rgba(0,0,0,0.5)] whitespace-nowrap">
                                 AOTM XL
                             </span>
                         </div>
