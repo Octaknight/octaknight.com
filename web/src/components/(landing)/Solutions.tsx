@@ -103,11 +103,7 @@ export default function Solutions() {
                 
                 {typeof sol.icon === 'string' ? (
                   <div
-                    className={`${
-                      sol.title === 'IoT Devices' 
-                        ? 'w-28 h-28 md:w-64 md:h-64 mb-6' 
-                        : 'w-32 h-32 md:w-72 md:h-72'
-                    } transition-colors duration-500 ${
+                    className={`w-32 h-32 md:w-72 md:h-72 transition-colors duration-500 ${
                       isHovered
                         ? 'bg-[var(--color-primary-500)]'
                         : 'bg-zinc-500'
@@ -126,7 +122,7 @@ export default function Solutions() {
                     transition={{ duration: 0.5 }}
                   >
                     {React.cloneElement(sol.icon, {
-                      className: 'w-24 h-24 md:w-48 md:h-48',
+                      className: 'w-32 h-32 md:w-72 md:h-72',
                     })}
                   </motion.div>
                 )}
