@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import OrderModal from '@/components/(product)/OrderModal';
 
 export default function Navbar({page}: {page: string}) {
     const [navState, setNavState] = useState(0);
@@ -9,6 +10,7 @@ export default function Navbar({page}: {page: string}) {
     const [isHidden, setIsHidden] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isStickyAOTM, setIsStickyAOTM] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const isToolsPage = page.toLowerCase() === "tools" || page.toLowerCase() === "contact" || page.toLowerCase() === "about";
     const isAOTMPage = page.toLowerCase() === "aotm";
@@ -133,11 +135,17 @@ export default function Navbar({page}: {page: string}) {
                         <div className="hidden md:block w-px h-4 bg-white/10" />
                             
                         <div className="flex items-center gap-4">
-                            <button className="cursor-pointer text-white/80 hover:text-white text-sm font-medium transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] whitespace-nowrap">
+                            <button 
+                                onClick={() => document.getElementById('specs')?.scrollIntoView({ behavior: 'smooth' })}
+                                className="cursor-pointer text-white/80 hover:text-white text-sm font-medium transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] whitespace-nowrap"
+                            >
                                 View Specs
                             </button>
                                 
-                            <button className="cursor-pointer group relative px-4 py-1.5 bg-[var(--color-primary-300)] text-black rounded-full font-bold text-sm hover:bg-[var(--color-primary-400)] transition-all duration-300 flex items-center gap-2 overflow-hidden">
+                            <button 
+                                onClick={() => setIsModalOpen(true)}
+                                className="cursor-pointer group relative px-4 py-1.5 bg-[var(--color-primary-300)] text-black rounded-full font-bold text-sm hover:bg-[var(--color-primary-400)] transition-all duration-300 flex items-center gap-2 overflow-hidden"
+                            >
                                 <span className="relative z-10">Order Now</span>
                                 <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
                                 
@@ -147,6 +155,12 @@ export default function Navbar({page}: {page: string}) {
                     </div>
                 </span>
             )}
+
+            <OrderModal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)} 
+                productName='AOTM Series'
+            />
 
                 <div className="relative h-6 hidden md:flex items-center justify-end overflow-hidden">
                     <AnimatePresence mode="wait">

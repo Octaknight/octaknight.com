@@ -9,8 +9,12 @@ import Intelligence from '@/components/(product)/(tool)/aotm/Intelligence';
 // import SmarterByDesign from '@/components/(product)/(tool)/aotm/SmarterByDesign';
 import IndustryProblems from '@/components/(product)/(tool)/aotm/IndustryProblems';
 import CTASection from '@/components/(product)/(tool)/aotm/CTASection';
+import OrderModal from '@/components/(product)/OrderModal';
+import { useState } from 'react';
 
 export default function AOTM() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     return (
         <div className="min-h-screen bg-black text-white selection:bg-[var(--color-primary-400)] selection:text-black">
             <Navbar page="aotm" />
@@ -29,11 +33,17 @@ export default function AOTM() {
                         <div className="hidden md:block w-px h-4 bg-white/10" />
                         
                         <div className="flex items-center justify-between w-full md:w-auto gap-4">
-                            <button className="cursor-pointer text-white/80 hover:text-white text-sm font-medium transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] whitespace-nowrap">
+                            <button 
+                                onClick={() => document.getElementById('specs')?.scrollIntoView({ behavior: 'smooth' })}
+                                className="cursor-pointer text-white/80 hover:text-white text-sm font-medium transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] whitespace-nowrap"
+                            >
                                 View Specs
                             </button>
                             
-                            <button className="cursor-pointer group relative px-5 py-2 bg-[var(--color-primary-300)] text-black rounded-full font-bold text-sm hover:bg-[var(--color-primary-400)] transition-all duration-300 flex items-center gap-2 overflow-hidden">
+                            <button 
+                                onClick={() => setIsModalOpen(true)}
+                                className="cursor-pointer group relative px-5 py-2 bg-[var(--color-primary-300)] text-black rounded-full font-bold text-sm hover:bg-[var(--color-primary-400)] transition-all duration-300 flex items-center gap-2 overflow-hidden"
+                            >
                                 <span className="relative z-10">Order Now</span>
                                 <svg className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -63,6 +73,12 @@ export default function AOTM() {
             <AOTMAdvantage />
             
             <CTASection />
+
+            <OrderModal 
+                isOpen={isModalOpen} 
+                onClose={() => setIsModalOpen(false)} 
+                productName='AOTM Series'
+            />
         </div>
     );
 }

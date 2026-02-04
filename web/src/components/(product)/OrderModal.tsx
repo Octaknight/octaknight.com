@@ -8,9 +8,11 @@ interface OrderModalProps {
   productName?: string;
 }
 
-export default function OrderModal({ isOpen, onClose, productName = "OctaArm Series X" }: OrderModalProps) {
+export default function OrderModal({ isOpen, onClose, productName }: OrderModalProps) {
+  if (!productName) {
+    productName = "OctaArm Series X";
+  }
   const [message, setMessage] = useState(`I am interested in ordering the ${productName}. Please provide more details regarding pricing and availability.`);
-
   const handleOpenMail = () => {
     const email = "contact@octaknight.com";
     const subject = encodeURIComponent(`Inquiry: ${productName}`);
