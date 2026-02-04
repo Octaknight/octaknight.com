@@ -56,8 +56,7 @@ export default function Solutions() {
   return (
     <div className="min-h-screen w-full bg-black text-white flex flex-col items-center justify-center p-4 md:p-8 overflow-hidden">
       <h2 className="text-3xl md:text-5xl mt-20 md:mt-30 font-bold mb-4 text-zinc-200 text-center">
-        Explore Our Solutions
-      </h2>
+        Explore Our <span className="text-[var(--color-primary-400)]">Solutions</span></h2>
       <p className="text-lg text-zinc-400 mb-8 md:mb-16 max-w-2xl text-center">
         Discover our ecosystem of advanced robotics and smart-factory solutions.
       </p>

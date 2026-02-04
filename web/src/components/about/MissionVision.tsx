@@ -1,9 +1,6 @@
-// src/components/about/MissionVision.tsx
-
-import { motion, type Variants } from "framer-motion"; // 1. Import the 'Variants' type
+import { motion, type Variants } from "framer-motion";
 
 const MissionVision = () => {
-  // 2. Apply the 'Variants' type to your constants
   const containerVariants: Variants = {
     hidden: {},
     visible: {
