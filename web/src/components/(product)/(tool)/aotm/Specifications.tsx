@@ -8,7 +8,7 @@ export default function Specifications() {
     const currentSpecs = aotmSpecs[selectedModel];
 
     return (
-        <section className="bg-[#101010] py-24 px-4 border-t border-white/5 relative overflow-hidden">
+        <section id="specs" className="bg-[#101010] py-24 px-4 border-t border-white/5 relative overflow-hidden">
             <div className="absolute top-1/4 -right-[10%] w-[600px] h-[600px] bg-[var(--color-primary-400)]/20 blur-[100px] rounded-full pointer-events-none mix-blend-screen opacity-10" />
             <div className="absolute bottom-1/4 -left-[10%] w-[500px] h-[500px] bg-[var(--color-primary-400)]/20 blur-[100px] rounded-full pointer-events-none mix-blend-screen opacity-10" />
             <div className="max-w-7xl mx-auto">
