@@ -186,17 +186,7 @@ export default function Mission() {
             zIndex: 1,
           }}
         >
-          <Prism
-            animationType="rotate"
-            timeScale={0.2}
-            height={isMobile ? 2.5 : 3.5}
-            baseWidth={isMobile ? 3.5 : 5.5}
-            scale={isMobile ? 2.2 : 3.6}
-            hueShift={0}
-            colorFrequency={1}
-            noise={0.5}
-            glow={1}
-          />
+          <Prism />
 
           <div
             style={{
