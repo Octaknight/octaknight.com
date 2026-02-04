@@ -94,7 +94,7 @@ export default function Navbar({page}: {page: string}) {
                 className={`${navBaseClasses} ${navDynamicClasses[navState]} ${isToolsPage || isAOTMPage ? 'backdrop-blur-md bg-black/20 border-b border-white/5' : ''}`}
             >
                 <div className="flex items-center overflow-hidden">
-                    <Link to="/" className="cursor-pointer flex items-center space-x-2 sm:space-x-4">
+                    <Link to="/" className="cursor-pointer flex items-center space-x-2 sm:space-x-4 z-10">
                         <motion.img
                             layout
                             src="/logo.png"
@@ -116,7 +116,7 @@ export default function Navbar({page}: {page: string}) {
                 </div>
 
                 {isAOTMPage && (
-                <div
+                <span
                     className={`fixed top-0 left-0 flex justify-center mt-20 lg:mt-1 right-0 transition-all duration-500 ${
                         isStickyAOTM
                             ? 'translate-y-0 opacity-100'
@@ -145,7 +145,7 @@ export default function Navbar({page}: {page: string}) {
                             </button>
                         </div>
                     </div>
-                </div>
+                </span>
             )}
 
                 <div className="relative h-6 hidden md:flex items-center justify-end overflow-hidden">
