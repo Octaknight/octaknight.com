@@ -51,9 +51,18 @@ export default function ProductGallery() {
 
     const scrollToItem = (index: number) => {
         if (!scrollContainerRef.current) return;
-        const card = scrollContainerRef.current.children[index] as HTMLElement;
+        const container = scrollContainerRef.current;
+        const card = container.children[index] as HTMLElement;
+        
         if (card) {
-            card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            const containerWidth = container.clientWidth;
+            const cardWidth = card.offsetWidth;
+            const scrollLeft = card.offsetLeft - (containerWidth / 2) + (cardWidth / 2);
+            
+            container.scrollTo({
+                left: scrollLeft,
+                behavior: 'smooth'
+            });
         }
     };
 
