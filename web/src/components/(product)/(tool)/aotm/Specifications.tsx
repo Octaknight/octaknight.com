@@ -169,19 +169,19 @@ export default function Specifications() {
                                 />
                             </div>
                             <h3 className="text-3xl font-sansation font-bold text-white mb-2">AOTM-XL</h3>
-                            <p className="text-[var(--color-primary-400)]">High Capacity</p>
+                            <p className="text-zinc-500">High Capacity</p>
                         </div>
 
                         <div className="w-full space-y-8">
-                            <SpecItem label="Capacity" value="204 slots" highlight />
-                            <SpecItem label="Max Inserts (5mm thick)" value="~9,000" highlight />
+                            <SpecItem label="Capacity" value="204 slots" />
+                            <SpecItem label="Max Inserts (5mm thick)" value="~9,000" />
                             <SpecItem label="Footprint (L×W×H)" value="1030 × 685 × 940 mm" />
                             <SpecItem label="Interface" value="12.7&quot; touchscreen GUI" />
                             <SpecItem label="Networking" value="Wi-Fi + LAN" />
                             
                             <SpecItem label="Power Supply" value="110-240V AC, 50/60Hz" />
                             <SpecItem label="Weight" value="~120 kg" />
-                            <SpecItem label="Security" value="RFID + Biometric Access" highlight />
+                            <SpecItem label="Security" value="RFID + Biometric Access" />
                         </div>
                     </div>
                 </div>
