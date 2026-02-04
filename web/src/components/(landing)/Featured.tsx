@@ -15,7 +15,7 @@ export default function Featured(){
             Featured <span className="text-[var(--color-primary-400)]">Projects</span>
         </h2>
         <p className="text-lg text-zinc-400 mb-16 max-w-2xl text-center">
-            Explore a curated selection of standout projects showcasing real-world deployments, technical innovations, and the engineering behind our robotics and smart-factory solutions.
+            Discover our production-ready robotic solutions designed to scale industrial operations and drive efficiency. Explore the innovative systems powering the next generation of smart factories.
         </p>
         <EmblaCarousel slides={SLIDE_DATA} options={OPTIONS} />
       </section>

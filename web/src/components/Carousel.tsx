@@ -11,6 +11,7 @@ import {
   type EmblaOptionsType,
 } from 'embla-carousel';
 import useEmblaCarousel from 'embla-carousel-react';
+import { Link } from 'react-router-dom';
 
 const TWEEN_FACTOR_BASE = 0.2;
 
@@ -19,47 +20,28 @@ type SlideData = {
   title: string;
   description: string;
   ctaText: string;
+  link: string;
 };
 
 export const SLIDE_DATA: SlideData[] = [
   {
     index: 0,
-    title: 'Project Alpha: The Sentinel',
+    title: 'AOTM I',
     description:
-      'Advanced robotics for next-generation security and surveillance, featuring AI-powered threat detection.',
-    ctaText: 'Explore The Sentinel',
+      'Automated tool dispensing and inventory management system for high-efficiency industrial workspaces.',
+    ctaText: 'Explore AOTM I',
+    link: '/aotm'
   },
   {
     index: 1,
-    title: 'Project Beta: The Weaver',
+    title: 'AOTM XL',
     description:
-      'High-precision automated manufacturing and assembly for complex electronics.',
-    ctaText: 'Learn About Weaver',
-  },
-  {
-    index: 2,
-    title: 'Project Gamma: The Atlas',
-    description:
-      'Heavy-lift logistics robot capable of navigating challenging and unstructured environments.',
-    ctaText: 'View Atlas Specs',
-  },
-  {
-    index: 3,
-    title: 'Project Delta: The Swift',
-    description:
-      'Rapid-response drone for aerial mapping, data collection, and emergency-response support.',
-    ctaText: 'See Swift in Action',
-  },
-  {
-    index: 4,
-    title: 'Project Epsilon: The Core',
-    description:
-      'A centralized AI hub for managing and coordinating entire fleets of autonomous robots.',
-    ctaText: 'Discover The Core',
-  },
+      'Automated tool dispensing and inventory management system, the largest in its segment for high-volume industrial operations.',
+    ctaText: 'Explore AOTM XL',
+    link: '/aotm'
+  }
 ];
 
-// --- Arrow Button Hook ---
 type UsePrevNextButtonsType = {
   prevBtnDisabled: boolean;
   nextBtnDisabled: boolean;
@@ -318,7 +300,7 @@ export const EmblaCarousel: React.FC<PropType> = (props) => {
                 <div className="embla-parallax-layer relative h-[600px] md:h-[800px] w-full flex justify-center">
                   <img
                     className="max-w-none flex-[0_0_calc(115%_+_2rem)] object-cover w-full h-full"
-                    src={`https://pub-15fcb55ecf4f42e689cf4e7e1a4737ad.r2.dev/placeholders/${slide.index}.png`}
+                    src={`https://pub-05ef32feaa264b41bf7b2f560600c73e.r2.dev/tools/products/aotm/${slide.index}.png`}
                     alt={slide.title}
                   />
                 </div>
@@ -331,9 +313,6 @@ export const EmblaCarousel: React.FC<PropType> = (props) => {
                   ></div>
                 )}
 
-
-                {/* Dynamic Text Box inside the slide */}
-                {/* We use index === selectedIndex to ensure the text only appears on the currently active slide */}
                 {index === selectedIndex && (
                   <div className="absolute bottom-0 left-0 p-8 z-20 text-white w-full md:w-2/3 lg:w-1/2">
                     <h2 className="text-2xl md:text-3xl font-bold mb-2">
@@ -342,9 +321,11 @@ export const EmblaCarousel: React.FC<PropType> = (props) => {
                     <p className="text-base md:text-lg text-neutral-300 mb-4">
                       {slide.description}
                     </p>
+                    <Link to={slide.link}>
                     <button className="bg-amber-400 cursor-pointer text-black font-semibold py-2 px-5 rounded-lg transition-transform active:scale-95 hover:bg-amber-300 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-black">
                       {slide.ctaText}
                     </button>
+                    </Link>
                   </div>
                 )}
               </div>
