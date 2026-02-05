@@ -44,8 +44,7 @@ const ContactForm = () => {
       transition={{ duration: 0.6 }}
       className="relative"
     >
-      {/* Decorative backing for depth */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl blur-xl -z-10" />
+      {/* <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-3xl blur-xl -z-10" /> */}
       
       <div className="p-8 md:p-10 bg-[#121214] border border-white/5 rounded-3xl shadow-2xl backdrop-blur-sm">
         <h2 className="text-2xl font-sansation font-bold mb-8 text-white">

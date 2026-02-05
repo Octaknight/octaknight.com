@@ -284,9 +284,6 @@ export default function ContactInfo() {
                   </div>
                 )}
               </div>
-              
-              {/* Bottom Progress/Border Accent */}
-              <div className="h-1 w-full bg-gradient-to-r from-[var(--color-primary-500)] to-transparent" />
             </motion.div>
           </div>
         )}
