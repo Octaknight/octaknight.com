@@ -30,7 +30,7 @@ export default function Hero() {
                             alt="AOTM Machine" 
                             className="w-full h-full object-contain drop-shadow-2xl"
                         />
-                        <div className="absolute left-[36%] top-[85%] flex flex-col items-center animate-fade-in delay-500">
+                        <div className="absolute left-[11%] top-[82%] flex flex-col items-center animate-fade-in delay-500">
                             <span className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-white/20 bg-black/60 backdrop-blur-xl text-white font-bold text-[10px] sm:text-xs md:text-sm lg:text-base tracking-widest shadow-[0_0_15px_rgba(0,0,0,0.5)] whitespace-nowrap">
                                 AOTM I
                             </span>
