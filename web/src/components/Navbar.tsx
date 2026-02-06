@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import OrderModal from '@/components/(product)/OrderModal';
 
 export default function Navbar({page}: {page: string}) {
@@ -11,6 +11,7 @@ export default function Navbar({page}: {page: string}) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isStickyAOTM, setIsStickyAOTM] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
     const isToolsPage = page.toLowerCase() === "tools" || page.toLowerCase() === "contact" || page.toLowerCase() === "about";
     const isAOTMPage = page.toLowerCase() === "aotm";
@@ -49,7 +50,7 @@ export default function Navbar({page}: {page: string}) {
         };
 
         const handleMouseMove = (e: MouseEvent) => {
-            if (e.clientY < 100) {
+            if (e.clientY < 150) {
                 setIsHovered(true);
             } else {
                 setIsHovered(false);
@@ -162,7 +163,7 @@ export default function Navbar({page}: {page: string}) {
                 productName='AOTM Series'
             />
 
-                <div className="relative h-6 hidden md:flex items-center justify-end overflow-hidden">
+                <div className="relative h-6 hidden md:flex items-center justify-end">
                     <AnimatePresence mode="wait">
                         {isToolsPage ? (
                              <motion.div
@@ -202,9 +203,85 @@ export default function Navbar({page}: {page: string}) {
                                 transition={{ duration: 0.2 }}
                                 className={solutionsLinkContainerClasses}
                             >
-                                <Link to="/coming-soon" className="text-white/60 hover:text-white transition-colors">Robotics</Link>
-                                <Link to="/tool-management" className="text-white/60 hover:text-white transition-colors whitespace-nowrap">Tool Management</Link>
-                                <Link to="/coming-soon" className="text-white/60 hover:text-white transition-colors">IoT devices</Link>
+                                <div 
+                                    className="relative h-full flex items-center justify-center cursor-pointer group"
+                                    onMouseEnter={() => setActiveCategory('robotics')}
+                                    onMouseLeave={() => setActiveCategory(null)}
+                                >
+                                    <Link to="/coming-soon" className="text-white/60 hover:text-white transition-colors py-2">
+                                        Robotics
+                                    </Link>
+                                    <AnimatePresence>
+                                        {activeCategory === 'robotics' && (
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                transition={{ duration: 0.2 }}
+                                                className="absolute top-full left-1/2 -translate-x-1/2 mt-2 py-2 px-3 bg-[#0E0E10]/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl min-w-[max-content]"
+                                            >
+                                                <span className="text-white/40 text-xs font-medium whitespace-nowrap block px-2 py-1">Coming Soon</span>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+
+                                <div 
+                                    className="relative h-full flex items-center justify-center cursor-pointer group"
+                                    onMouseEnter={() => setActiveCategory('tools')}
+                                    onMouseLeave={() => setActiveCategory(null)}
+                                >
+                                    <Link to="/tool-management" className="text-white/60 hover:text-white transition-colors py-2 whitespace-nowrap">
+                                        Tool Management
+                                    </Link>
+                                    <AnimatePresence>
+                                        {activeCategory === 'tools' && (
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                transition={{ duration: 0.2 }}
+                                                className="absolute top-full left-1/2 -translate-x-1/2 mt-2 p-1.5 bg-[#0E0E10]/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl flex flex-col gap-1 min-w-[140px]"
+                                            >
+                                                <Link 
+                                                    to="/aotm" 
+                                                    className="block px-3 py-2 rounded-lg hover:bg-white/10 text-white/80 hover:text-white text-sm transition-all whitespace-nowrap"
+                                                >
+                                                    AOTM I
+                                                </Link>
+                                                <Link 
+                                                    to="/aotm" 
+                                                    className="block px-3 py-2 rounded-lg hover:bg-white/10 text-white/80 hover:text-white text-sm transition-all whitespace-nowrap"
+                                                >
+                                                    AOTM XL
+                                                </Link>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
+
+                                <div 
+                                    className="relative h-full flex items-center justify-center cursor-pointer group"
+                                    onMouseEnter={() => setActiveCategory('iot')}
+                                    onMouseLeave={() => setActiveCategory(null)}
+                                >
+                                    <Link to="/coming-soon" className="text-white/60 hover:text-white transition-colors py-2">
+                                        IoT devices
+                                    </Link>
+                                    <AnimatePresence>
+                                        {activeCategory === 'iot' && (
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                                exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                                transition={{ duration: 0.2 }}
+                                                className="absolute top-full left-1/2 -translate-x-1/2 mt-2 py-2 px-3 bg-[#0E0E10]/90 backdrop-blur-xl border border-white/10 rounded-xl shadow-2xl min-w-[max-content]"
+                                            >
+                                                <span className="text-white/40 text-xs font-medium whitespace-nowrap block px-2 py-1">Coming Soon</span>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
                             </motion.div>
                         )}
                     </AnimatePresence>
@@ -303,27 +380,97 @@ export default function Navbar({page}: {page: string}) {
                                     </>
                                 ) : (
                                     <>
-                                        <a 
-                                            href="/coming-soon" 
-                                            className="text-white/70 hover:text-white transition-colors text-base py-2 px-3 rounded-lg hover:bg-white/5"
-                                            onClick={() => setIsMobileMenuOpen(false)}
-                                        >
-                                            Robotics
-                                        </a>
-                                        <a 
-                                            href="/tool-management" 
-                                            className="text-white/70 hover:text-white transition-colors text-base py-2 px-3 rounded-lg hover:bg-white/5"
-                                            onClick={() => setIsMobileMenuOpen(false)}
-                                        >
-                                            Tool Management
-                                        </a>
-                                        <a 
-                                            href="/coming-soon" 
-                                            className="text-white/70 hover:text-white transition-colors text-base py-2 px-3 rounded-lg hover:bg-white/5"
-                                            onClick={() => setIsMobileMenuOpen(false)}
-                                        >
-                                            IoT devices
-                                        </a>
+                                        <div className="flex flex-col border-b border-white/5 pb-2 last:border-0 last:pb-0">
+                                            <button 
+                                                className="text-white/70 hover:text-white transition-colors text-base py-3 px-3 rounded-lg hover:bg-white/5 text-left w-full flex justify-between items-center gap-4"
+                                                onClick={() => setActiveCategory(activeCategory === 'robotics' ? null : 'robotics')}
+                                            >
+                                                <span>Robotics</span>
+                                                <motion.span 
+                                                    animate={{ rotate: activeCategory === 'robotics' ? 180 : 0 }}
+                                                    className="opacity-50"
+                                                >
+                                                    <ChevronDown size={16} />
+                                                </motion.span>
+                                            </button>
+                                            <AnimatePresence>
+                                                {activeCategory === 'robotics' && (
+                                                    <motion.div
+                                                        initial={{ opacity: 0, height: 0 }}
+                                                        animate={{ opacity: 1, height: 'auto' }}
+                                                        exit={{ opacity: 0, height: 0 }}
+                                                        className="overflow-hidden pl-4"
+                                                    >
+                                                        <span className="block text-white/40 text-sm py-2 italic">Coming Soon</span>
+                                                    </motion.div>
+                                                )}
+                                            </AnimatePresence>
+                                        </div>
+                                        <div className="flex flex-col border-b border-white/5 pb-2 last:border-0 last:pb-0">
+                                            <button 
+                                                className="text-white/70 hover:text-white transition-colors text-base py-3 px-3 rounded-lg hover:bg-white/5 text-left w-full flex justify-between items-center gap-4"
+                                                onClick={() => setActiveCategory(activeCategory === 'tools' ? null : 'tools')}
+                                            >
+                                                <span>Tool Management</span>
+                                                <motion.span 
+                                                    animate={{ rotate: activeCategory === 'tools' ? 180 : 0 }}
+                                                    className="opacity-50"
+                                                >
+                                                    <ChevronDown size={16} />
+                                                </motion.span>
+                                            </button>
+                                            <AnimatePresence>
+                                                {activeCategory === 'tools' && (
+                                                    <motion.div
+                                                        initial={{ opacity: 0, height: 0 }}
+                                                        animate={{ opacity: 1, height: 'auto' }}
+                                                        exit={{ opacity: 0, height: 0 }}
+                                                        className="overflow-hidden pl-4 flex flex-col gap-2 pt-2"
+                                                    >
+                                                        <Link 
+                                                            to="/aotm" 
+                                                            className="text-white/60 hover:text-white py-2 px-2 rounded-md hover:bg-white/5 block text-sm transition-colors"
+                                                            onClick={() => setIsMobileMenuOpen(false)}
+                                                        >
+                                                            AOTM I
+                                                        </Link>
+                                                        <Link 
+                                                            to="/aotm" 
+                                                            className="text-white/60 hover:text-white py-2 px-2 rounded-md hover:bg-white/5 block text-sm transition-colors"
+                                                            onClick={() => setIsMobileMenuOpen(false)}
+                                                        >
+                                                            AOTM XL
+                                                        </Link>
+                                                    </motion.div>
+                                                )}
+                                            </AnimatePresence>
+                                        </div>
+                                        <div className="flex flex-col border-b border-white/5 pb-2 last:border-0 last:pb-0">
+                                            <button 
+                                                className="text-white/70 hover:text-white transition-colors text-base py-3 px-3 rounded-lg hover:bg-white/5 text-left w-full flex justify-between items-center gap-4"
+                                                onClick={() => setActiveCategory(activeCategory === 'iot' ? null : 'iot')}
+                                            >
+                                                <span>IoT devices</span>
+                                                <motion.span 
+                                                    animate={{ rotate: activeCategory === 'iot' ? 180 : 0 }}
+                                                    className="opacity-50"
+                                                >
+                                                    <ChevronDown size={16} />
+                                                </motion.span>
+                                            </button>
+                                            <AnimatePresence>
+                                                {activeCategory === 'iot' && (
+                                                    <motion.div
+                                                        initial={{ opacity: 0, height: 0 }}
+                                                        animate={{ opacity: 1, height: 'auto' }}
+                                                        exit={{ opacity: 0, height: 0 }}
+                                                        className="overflow-hidden pl-4"
+                                                    >
+                                                        <span className="block text-white/40 text-sm py-2 italic">Coming Soon</span>
+                                                    </motion.div>
+                                                )}
+                                            </AnimatePresence>
+                                        </div>
                                     </>
                                 )}
                             </div>
