@@ -27,25 +27,75 @@ export default function Footer() {
     <>
       <footer className="relative bg-black text-white overflow-hidden pt-10 md:pt-20 pb-10">
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-10 md:mb-20">
-            <div className="md:col-span-5 space-y-6">
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-xs font-medium tracking-wider text-white/70 uppercase mb-4">
-                <img src="/logo.png" alt="Logo" className="w-4 h-4 rounded-full" />
-                Octaknight Pvt Ltd
-              </div>
-              <div className="flex flex-col items-start">
-                <h2 className="text-4xl md:text-6xl font-sansation font-bold leading-tight mb-[-10px] md:mb-[-20px]">
-                  Engineering the
-                </h2>
-                <div className="h-[60px] md:h-[100px] w-full mr-0 md:mr-[-60px] -ml-1 md:ml-0">
-                  <TextHoverEffect text="future of automation" />
+          <div className="grid grid-cols-2 md:grid-cols-12 gap-8 md:gap-12 mb-10 md:mb-0">
+            <div className="col-span-2 md:col-span-5 relative h-auto md:h-full md:min-h-[400px]">
+
+              <div className="block md:hidden space-y-6">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-xs font-medium tracking-wider text-white/70 uppercase mb-4">
+                    <img src="/logo.png" alt="Logo" className="w-4 h-4 rounded-full" />
+                    Octaknight Pvt Ltd
                 </div>
+                <div className="flex flex-col items-start">
+                    <h2 className="text-3xl font-sansation font-bold leading-tight mb-[-10px]">
+                    Engineering the
+                    </h2>
+                    <div className="h-[50px] w-full -ml-1">
+                    <TextHoverEffect text="future of automation" />
+                    </div>
+                </div>
+              </div>
+
+              <div className="hidden md:block h-full">
+                <AnimatePresence mode="wait">
+                    {showMegaMenu ? (
+                    <motion.div
+                        key="mega-menu"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.3 }}
+                        className="h-full w-full"
+                        onMouseEnter={() => {
+                            if (window.footerMenuTimeout) clearTimeout(window.footerMenuTimeout);
+                        }}
+                        onMouseLeave={() => {
+                            window.footerMenuTimeout = setTimeout(() => {
+                            setShowMegaMenu(false);
+                            }, 300);
+                        }}
+                    >
+                        <SolutionsMegaMenu selectedCategory={selectedCategory} className="h-full w-full" />
+                    </motion.div>
+                    ) : (
+                    <motion.div
+                        key="branding"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 20 }}
+                        transition={{ duration: 0.3 }}
+                        className="space-y-6"
+                    >
+                        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-xs font-medium tracking-wider text-white/70 uppercase mb-4">
+                            <img src="/logo.png" alt="Logo" className="w-4 h-4 rounded-full" />
+                            Octaknight Pvt Ltd
+                        </div>
+                        <div className="flex flex-col items-start">
+                            <h2 className="text-6xl font-sansation font-bold leading-tight mb-[-20px]">
+                            Engineering the
+                            </h2>
+                            <div className="h-[100px] w-full mr-[-60px]">
+                            <TextHoverEffect text="future of automation" />
+                            </div>
+                        </div>
+                    </motion.div>
+                    )}
+                </AnimatePresence>
               </div>
             </div>
 
-            <div className="md:col-span-1"></div>
+            <div className="hidden md:block md:col-span-1"></div>
 
-            <div className="grid grid-cols-2 md:grid-cols-1 gap-8 md:col-span-2 md:block md:space-y-6 mt-5">
+            <div className="col-span-1 md:col-span-2 space-y-6 mt-5 md:mt-5">
                <div 
                   className="space-y-6 relative"
                   onMouseLeave={() => {
@@ -54,8 +104,8 @@ export default function Footer() {
                     }, 300);
                   }}
                >
-                  <h3 className="text-sm font-bold tracking-widest text-[var(--color-primary-400)] uppercase cursor-pointer">Solutions & Products</h3>
-                  <ul className="space-y-4">
+                  <h3 className="text-sm font-bold tracking-widest text-[var(--color-primary-400)] uppercase cursor-pointer">Solutions</h3>
+                  <ul className="space-y-3 md:space-y-4">
                     <li 
                         onMouseEnter={() => {
                             if (window.footerMenuTimeout) clearTimeout(window.footerMenuTimeout);
@@ -63,7 +113,7 @@ export default function Footer() {
                             setShowMegaMenu(true);
                         }}
                     >
-                        <Link to="/tool-management" className="text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi block py-1">Tool Management</Link>
+                        <Link to="/tool-management" className="text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi block py-1 text-sm md:text-base">Tool Management</Link>
                     </li>
                     <li
                         onMouseEnter={() => {
@@ -72,7 +122,7 @@ export default function Footer() {
                             setShowMegaMenu(true);
                         }}
                     >
-                        <Link to="/coming-soon" className="text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi block py-1">Robotics</Link>
+                        <Link to="/coming-soon" className="text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi block py-1 text-sm md:text-base">Robotics</Link>
                     </li>
                     <li
                         onMouseEnter={() => {
@@ -81,66 +131,44 @@ export default function Footer() {
                             setShowMegaMenu(true);
                         }}
                     >
-                        <Link to="/coming-soon" className="text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi block py-1">IoT Devices</Link>
+                        <Link to="/coming-soon" className="text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi block py-1 text-sm md:text-base">IoT Devices</Link>
                     </li>
                   </ul>
-
-                  <AnimatePresence>
-                    {showMegaMenu && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                        transition={{ duration: 0.2 }}
-                        className="fixed bottom-32 left-1/2 -translate-x-1/2 z-[100] hidden md:block"
-                        onMouseEnter={() => {
-                            if (window.footerMenuTimeout) clearTimeout(window.footerMenuTimeout);
-                        }}
-                        onMouseLeave={() => {
-                            window.footerMenuTimeout = setTimeout(() => {
-                              setShowMegaMenu(false);
-                            }, 300);
-                        }}
-                      >
-                        <SolutionsMegaMenu selectedCategory={selectedCategory} />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
                </div>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-1 gap-8 md:col-span-2 md:block md:space-y-6 mt-5">
+            <div className="col-span-1 md:col-span-2 space-y-6 mt-5 md:mt-5">
               <div className="space-y-6">
-                  <h3 className="text-sm font-bold tracking-widest text-[var(--color-primary-400)] uppercase">Company</h3>
-                  <ul className="space-y-4">
-                    <li><Link to="/" className="text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi">Home</Link></li>
-                    <li><Link to="/about" className="text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi">About Us</Link></li>
-                    <li><Link to="/contact" className="text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi">Contact</Link></li>
-                    <li><Link to="/coming-soon" className="text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi">Documentation</Link></li>
-                  </ul>
-              </div>
+                   <h3 className="text-sm font-bold tracking-widest text-[var(--color-primary-400)] uppercase">Company</h3>
+                   <ul className="space-y-3 md:space-y-4">
+                     <li><Link to="/" className="text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi text-sm md:text-base">Home</Link></li>
+                     <li><Link to="/about" className="text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi text-sm md:text-base">About Us</Link></li>
+                     <li><Link to="/contact" className="text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi text-sm md:text-base">Contact</Link></li>
+                     <li><Link to="/coming-soon" className="text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi text-sm md:text-base">Documentation</Link></li>
+                   </ul>
+               </div>
             </div>
 
-            <div className="md:col-span-2 space-y-6">
-              <h3 className="text-sm font-bold tracking-widest text-[var(--color-primary-400)] uppercase mt-5">Connect</h3>
-              <ul className="space-y-4">
+            <div className="col-span-2 md:col-span-2 space-y-6 mt-0 md:mt-5">
+              <h3 className="text-sm font-bold tracking-widest text-[var(--color-primary-400)] uppercase">Connect</h3>
+              <ul className="space-y-3 md:space-y-4 grid grid-cols-2 md:grid-cols-1 gap-2 md:gap-0">
                 <li>
-                  <a href="#" className="flex items-center gap-2 text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi">
+                  <a href="#" className="flex items-center gap-2 text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi text-sm md:text-base">
                     <Linkedin className="w-4 h-4" /> LinkedIn
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="flex items-center gap-2 text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi">
+                  <a href="#" className="flex items-center gap-2 text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi text-sm md:text-base">
                     <Twitter className="w-4 h-4" /> Twitter
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="flex items-center gap-2 text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi">
+                  <a href="#" className="flex items-center gap-2 text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi text-sm md:text-base">
                     <Github className="w-4 h-4" /> GitHub
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="flex items-center gap-2 text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi">
+                  <a href="#" className="flex items-center gap-2 text-white/70 hover:text-[var(--color-primary-400)] transition-colors font-satoshi text-sm md:text-base">
                     <Instagram className="w-4 h-4" /> Instagram
                   </a>
                 </li>

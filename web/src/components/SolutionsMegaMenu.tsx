@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Construction } from 'lucide-react';
 import { products } from '../data/productInfo';
 
-// Group products by solution
 const solutions = ["Tool Management", "Robotics", "IoT Devices"];
 const groupedProducts = solutions.reduce((acc, solution) => {
     acc[solution] = products.filter(p => p.solution === solution);
@@ -13,12 +12,14 @@ const groupedProducts = solutions.reduce((acc, solution) => {
 
 interface SolutionsMegaMenuProps {
     selectedCategory: string;
+    className?: string;
+    onMouseEnter?: () => void;
+    onMouseLeave?: () => void;
 }
 
-export default function SolutionsMegaMenu({ selectedCategory }: SolutionsMegaMenuProps) {
+export default function SolutionsMegaMenu({ selectedCategory, className, onMouseEnter, onMouseLeave }: SolutionsMegaMenuProps) {
     const [hoveredProduct, setHoveredProduct] = useState<typeof products[0] | null>(null);
 
-    // Reset hovered product when category changes
     useEffect(() => {
         setHoveredProduct(null);
     }, [selectedCategory]);
@@ -27,9 +28,13 @@ export default function SolutionsMegaMenu({ selectedCategory }: SolutionsMegaMen
     const isComingSoon = selectedCategory !== "Tool Management";
     
     return (
-        <div className="w-[700px] bg-[#0E0E10] border border-white/10 rounded-xl shadow-2xl overflow-hidden p-6 z-50">
+        <div 
+            className={`bg-[#0E0E10] border border-white/10 rounded-xl shadow-2xl overflow-hidden p-6 z-50 ${className || ''}`}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+        >
             {isComingSoon ? (
-                <div className="h-[400px] flex flex-col items-center justify-center text-center relative overflow-hidden">
+                <div className="h-full flex flex-col items-center justify-center text-center relative overflow-hidden min-h-[350px]">
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--color-primary-900)_0%,_transparent_70%)] opacity-10" />
                     
                     <motion.div 
@@ -56,15 +61,14 @@ export default function SolutionsMegaMenu({ selectedCategory }: SolutionsMegaMen
                     </div>
                 </div>
             ) : (
-                <div className="grid grid-cols-9 gap-6 h-[400px]">
-                    {/* Products List */}
+                <div className="grid grid-cols-9 gap-6 h-full min-h-[350px]">
                     <div className="col-span-4 border-r border-white/10 pr-4 space-y-2 overflow-y-auto custom-scrollbar">
                         <h3 className="text-xs font-bold tracking-widest text-white/40 uppercase mb-4 px-3">Products</h3>
                         <div className="space-y-1">
                             {currentProducts.map((product) => (
                                 <Link
                                     key={product.id}
-                                    to={`/product/${product.id}`}
+                                    to="/aotm"
                                     onMouseEnter={() => setHoveredProduct(product)}
                                     className={`block px-3 py-2 rounded-lg transition-all duration-200 group ${
                                         hoveredProduct?.id === product.id 
@@ -95,7 +99,6 @@ export default function SolutionsMegaMenu({ selectedCategory }: SolutionsMegaMen
                         </div>
                     </div>
 
-                    {/* Product Preview */}
                     <div className="col-span-5 pl-2 relative">
                         <AnimatePresence mode="wait">
                             {hoveredProduct ? (
