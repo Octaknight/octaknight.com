@@ -29,9 +29,9 @@ const TeamMemberCard = ({ member }: TeamMemberCardProps) => {
         <h3 className="transform text-xl font-bold text-white transition-transform duration-300 ease-in-out translate-y-4 group-hover:translate-y-0">
           {member.name}
         </h3>
-        <p className="transform text-sm text-white/80 transition-transform duration-300 ease-in-out translate-y-4 delay-75 group-hover:translate-y-0">
+        {/* <p className="transform text-sm text-white/80 transition-transform duration-300 ease-in-out translate-y-4 delay-75 group-hover:translate-y-0">
           {member.role}
-        </p>
+        </p> */}
       </div>
     </motion.div>
   );

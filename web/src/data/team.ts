@@ -10,7 +10,7 @@ export interface TeamMember {
 export const teamMembers: TeamMember[] = [
   {
     id: 1,
-    name: "Devi Baby",
+    name: "Devashish Gojagekar",
     role: "Knows Drones",
     imageUrl: `${CDN_BASE_URL}/team/Devi.png`,
   },
@@ -22,7 +22,7 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 3,
-    name: "Rohit Raghwan",
+    name: "Rohit Raghavan",
     role: "Keeps Actual Tony Stark at bay",
     imageUrl: `${CDN_BASE_URL}/team/Rohit.png`,
   },
@@ -34,13 +34,13 @@ export const teamMembers: TeamMember[] = [
   },
   {
     id: 5,
-    name: "Lakki",
+    name: "Laxmikant Bidari",
     role: "Hoots sometimes",
     imageUrl: `${CDN_BASE_URL}/team/Lakki 2.png`,
   },
   {
     id: 6,
-    name: "Tani",
+    name: "Tanishka Lengade",
     role: "Laughs at everything",
     imageUrl: `${CDN_BASE_URL}/team/Tani.png`,
   }
