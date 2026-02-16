@@ -13,9 +13,21 @@ const Team = () => {
             The minds engineering the next generation of intelligent systems.
           </p>
         </div>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {teamMembers.map((member) => (
-            <TeamMemberCard key={member.id} member={member} />
+        <div className="flex flex-wrap justify-center gap-6">
+          {teamMembers.map((member, index) => (
+            <div
+              key={member.id}
+              className={`w-full sm:w-[calc(50%-12px)] ${
+                index < 3
+                  ? "lg:w-[calc(33.33%-16px)]"
+                  : "lg:w-[calc(25%-18px)]"
+              }`}
+            >
+              <TeamMemberCard
+                member={member}
+                className={index >= 3 ? "lg:h-64" : ""}
+              />
+            </div>
           ))}
         </div>
       </div>

@@ -43,5 +43,11 @@ export const teamMembers: TeamMember[] = [
     name: "Tanishka Lengade",
     role: "Laughs at everything",
     imageUrl: `${CDN_BASE_URL}/team/Tani.png`,
-  }
+  },
+  {
+    id: 7,
+    name: "Srishant Baliga",
+    role: "The Tech Wizard",
+    imageUrl: `${CDN_BASE_URL}/team/Srishant.png`,
+  },
 ];
