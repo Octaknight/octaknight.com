@@ -28,7 +28,7 @@ export default function Footer() {
       <footer className="relative bg-black text-white overflow-hidden pt-10 md:pt-20 pb-10">
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-12 gap-8 md:gap-12 mb-10 md:mb-0">
-            <div className="col-span-2 md:col-span-5 relative h-auto md:h-full md:min-h-[400px]">
+            <div className="col-span-2 md:col-span-5 relative h-auto md:h-full md:min-h-[200px]">
 
               <div className="block md:hidden space-y-6">
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm text-xs font-medium tracking-wider text-white/70 uppercase mb-4">

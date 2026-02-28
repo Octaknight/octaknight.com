@@ -31,18 +31,6 @@ const solutions = [
 export default function Solutions() {
   const [hovered, setHovered] = useState('Tool Management');
 
-  const cardVariants = {
-    initial: {
-      flexGrow: 1,
-    },
-    hovered: {
-      flexGrow: 2.5,
-    },
-    inactive: {
-      flexGrow: 1,
-    },
-  };
-
   const textVariants = {
     initial: { color: 'rgb(161 161 170)' },
     hovered: { color: 'rgb(250 250 250)' },
@@ -74,17 +62,14 @@ export default function Solutions() {
               to={sol.title === 'Tool Management' ? '/tool-management' : '/coming-soon'}
               className="contents"
             >
-            <motion.div
-              layout
-              key={sol.title}
+            <div
               id={sol.id}
-              className="relative h-[300px] md:h-full rounded-2xl border transition-colors duration-500 backdrop-blur-sm overflow-hidden cursor-pointer"
-              onHoverStart={() => setHovered(sol.title)}
-              variants={cardVariants}
-              animate={isHovered ? 'hovered' : 'inactive'}
-              transition={{ type: 'spring', stiffness: 400, damping: 30, duration: 0.5 }}
+              className="relative h-[300px] md:h-full rounded-2xl border overflow-hidden cursor-pointer"
+              onMouseEnter={() => setHovered(sol.title)}
               style={{
-                willChange: 'flex-grow',
+                flex: isHovered ? '2.5 0 0%' : '1 0 0%',
+                transition: 'flex 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.5s ease, background 0.5s ease',
+                willChange: 'flex',
                 borderColor: isHovered
                   ? 'rgba(250, 204, 21, 0.4)' 
                   : 'rgba(63, 63, 70, 0.5)',
@@ -144,7 +129,7 @@ export default function Solutions() {
                       <ArrowRightIcon className='h-4 w-4'/>
                   </div>)}
               </div>
-            </motion.div>
+            </div>
             </Link>
           );
         })}

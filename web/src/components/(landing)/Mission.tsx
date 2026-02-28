@@ -42,24 +42,29 @@ export default function Mission() {
     }[] = [];
 
     const cursor = { x: -9999, y: -9999 };
+    let isVisible = false;
 
+    let resizeTimer: ReturnType<typeof setTimeout>;
     const resize = () => {
-      const rect = hero.getBoundingClientRect();
-      canvas.width = Math.max(1, Math.floor(rect.width));
-      canvas.height = Math.max(1, Math.floor(rect.height));
-      canvas.style.width = `${rect.width}px`;
-      canvas.style.height = `${rect.height}px`;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        const rect = hero.getBoundingClientRect();
+        canvas.width = Math.max(1, Math.floor(rect.width));
+        canvas.height = Math.max(1, Math.floor(rect.height));
+        canvas.style.width = `${rect.width}px`;
+        canvas.style.height = `${rect.height}px`;
 
-      particles.length = 0;
-      for (let i = 0; i < PARTICLE_COUNT; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.2,
-          vy: (Math.random() - 0.5) * 0.2,
-          r: 1.2 + Math.random() * 1.6,
-        });
-      }
+        particles.length = 0;
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+          particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.2,
+            vy: (Math.random() - 0.5) * 0.2,
+            r: 1.2 + Math.random() * 1.6,
+          });
+        }
+      }, 150);
     };
 
     const onMove = (e: PointerEvent) => {
@@ -74,11 +79,27 @@ export default function Mission() {
 
     hero.addEventListener("pointermove", onMove, { passive: true });
     hero.addEventListener("pointerleave", onLeave, { passive: true });
-    window.addEventListener("resize", resize);
+    window.addEventListener("resize", resize, { passive: true });
 
-    resize();
+    // Run resize immediately without debounce for initial setup
+    const rect = hero.getBoundingClientRect();
+    canvas.width = Math.max(1, Math.floor(rect.width));
+    canvas.height = Math.max(1, Math.floor(rect.height));
+    canvas.style.width = `${rect.width}px`;
+    canvas.style.height = `${rect.height}px`;
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.2,
+        vy: (Math.random() - 0.5) * 0.2,
+        r: 1.2 + Math.random() * 1.6,
+      });
+    }
 
     const step = () => {
+      if (!isVisible) return;
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       ctx.globalCompositeOperation = "lighter";
@@ -142,12 +163,26 @@ export default function Mission() {
       animationRef.current = requestAnimationFrame(step);
     };
 
-    animationRef.current = requestAnimationFrame(step);
+    // IntersectionObserver: pause RAF when section is offscreen
+    const observer = new IntersectionObserver(
+      (entries) => {
+        isVisible = entries[0].isIntersecting;
+        if (isVisible) {
+          animationRef.current = requestAnimationFrame(step);
+        } else {
+          if (animationRef.current) cancelAnimationFrame(animationRef.current);
+        }
+      },
+      { threshold: 0.05 }
+    );
+    observer.observe(hero);
 
     return () => {
       hero.removeEventListener("pointermove", onMove);
       hero.removeEventListener("pointerleave", onLeave);
       window.removeEventListener("resize", resize);
+      clearTimeout(resizeTimer);
+      observer.disconnect();
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
     };
   }, []);
@@ -155,13 +190,11 @@ export default function Mission() {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-      const checkMobile = () => {
-        setIsMobile(window.innerWidth < 768);
-      };
-      
-      checkMobile();
-      window.addEventListener('resize', checkMobile);
-      return () => window.removeEventListener('resize', checkMobile);
+      const mq = window.matchMedia('(max-width: 767px)');
+      setIsMobile(mq.matches);
+      const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+      mq.addEventListener('change', handler);
+      return () => mq.removeEventListener('change', handler);
     }, []);
 
     return (

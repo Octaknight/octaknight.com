@@ -23,7 +23,7 @@ export default function Navbar({page}: {page: string}) {
                 setIsStickyAOTM(window.scrollY > heroHeight * 0.9);
             };
 
-            window.addEventListener('scroll', handleAOTMScroll);
+            window.addEventListener('scroll', handleAOTMScroll, { passive: true });
             return () => window.removeEventListener('scroll', handleAOTMScroll);
         }
 
@@ -49,16 +49,18 @@ export default function Navbar({page}: {page: string}) {
             }    
         };
 
+        let rafPending = false;
         const handleMouseMove = (e: MouseEvent) => {
-            if (e.clientY < 150) {
-                setIsHovered(true);
-            } else {
-                setIsHovered(false);
-            }
+            if (rafPending) return;
+            rafPending = true;
+            requestAnimationFrame(() => {
+                setIsHovered(e.clientY < 150);
+                rafPending = false;
+            });
         };
 
-        window.addEventListener('scroll', handleScroll);
-        window.addEventListener('mousemove', handleMouseMove);
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        window.addEventListener('mousemove', handleMouseMove, { passive: true });
         return () => {
             window.removeEventListener('scroll', handleScroll);
             window.removeEventListener('mousemove', handleMouseMove);
@@ -88,7 +90,6 @@ export default function Navbar({page}: {page: string}) {
     return (
         <>
             <motion.nav
-                layout
                 animate={{ 
                     y: shouldHide ? -100 : 0,
                     opacity: shouldHide ? 0 : 1
@@ -98,11 +99,10 @@ export default function Navbar({page}: {page: string}) {
             >
                 <div className="flex items-center overflow-hidden">
                     <Link to="/" className="cursor-pointer flex items-center space-x-2 sm:space-x-4 z-10">
-                        <motion.img
-                            layout
+                        <img
                             src="/logo.png"
                             alt="Octaknight Labs Logo"
-                            className={`${navState > 0 ? 'h-8 w-8 sm:h-10 sm:w-10' : 'h-7 w-7 sm:h-8 sm:w-8'}`}
+                            className={`transition-all duration-300 ${navState > 0 ? 'h-8 w-8 sm:h-10 sm:w-10' : 'h-7 w-7 sm:h-8 sm:w-8'}`}
                         />
                         <AnimatePresence>
                                 <motion.span

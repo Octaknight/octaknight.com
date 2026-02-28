@@ -21,6 +21,7 @@ const Prism: React.FC<PrismProps> = ({ className, style }) => {
     let height = 0;
     let animationFrameId: number;
     let time = 0;
+    let isVisible = false;
     
     // Wave Configuration
     const LINES = 45; 
@@ -79,6 +80,8 @@ const Prism: React.FC<PrismProps> = ({ className, style }) => {
     };
 
     const animate = () => {
+        if (!isVisible) return;
+
         ctx.clearRect(0, 0, width, height);
         time += SPEED; 
         
@@ -107,29 +110,19 @@ const Prism: React.FC<PrismProps> = ({ className, style }) => {
             const mouseFactorX = (mouse.x / width - 0.5) * 20;
 
             for (let x = 0; x <= width; x += 5) {
-                // Complex ribbon wave calculation
                 const y = centerY + mouseFactorY +
                           Math.sin(x * 0.003 + phase) * currentAmp * Math.sin(x * 0.001 + time) +
                           Math.cos(x * 0.002 - phase) * (currentAmp * 0.5);
-                
-                // Add parallax to X to simulate 3D rotation based on mouse X
                 const dx = x + mouseFactorX * Math.sin(y * 0.01);
 
                 if (x === 0) ctx.moveTo(dx, y);
                 else ctx.lineTo(dx, y);
             }
             
-            // Dynamic Shimmer Gradient
-            // We shift the gradient stops over time to mimic light flowing along the metal
             const gradient = ctx.createLinearGradient(0, 0, width, 0);
-            
-            // Base gold
             const g1 = `rgba(228, 187, 59, 0.1)`; 
-            // Highlight - moves back and forth
             const highlightPos = 0.5 + Math.sin(time * 2 + t) * 0.3;
-            // Highlight color
             const g2 = `rgba(255, 235, 180, ${0.4 + Math.sin(time*5)*0.2})`; 
-            // End
             const g3 = `rgba(180, 140, 40, 0.1)`;
 
             gradient.addColorStop(0, g1);
@@ -138,26 +131,27 @@ const Prism: React.FC<PrismProps> = ({ className, style }) => {
             
             ctx.strokeStyle = gradient;
             ctx.lineWidth = 1.5; 
-            // Add global composite operation for 'glow' feel
-            // ctx.globalCompositeOperation = 'screen'; // Optional, can be heavy
             ctx.stroke();
-            // ctx.globalCompositeOperation = 'source-over';
         }
         
         animationFrameId = requestAnimationFrame(animate);
     };
 
+    let resizeTimer: ReturnType<typeof setTimeout>;
     const handleResize = () => {
-        const rect = container.getBoundingClientRect();
-        width = rect.width;
-        height = rect.height;
-        
-        const dpr = window.devicePixelRatio || 1;
-        canvas.width = width * dpr;
-        canvas.height = height * dpr;
-        ctx.scale(dpr, dpr);
-        
-        init();
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            const rect = container.getBoundingClientRect();
+            width = rect.width;
+            height = rect.height;
+            
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = width * dpr;
+            canvas.height = height * dpr;
+            ctx.scale(dpr, dpr);
+            
+            init();
+        }, 150);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -165,25 +159,32 @@ const Prism: React.FC<PrismProps> = ({ className, style }) => {
         targetMouse.x = e.clientX - rect.left;
         targetMouse.y = e.clientY - rect.top;
     };
-    
-    const handleMouseLeave = () => {
-       // Optional: center mouse on leave? 
-       // targetMouse.x = width/2;
-       // targetMouse.y = height/2;
-    };
 
-    window.addEventListener('resize', handleResize);
-    container.addEventListener('mousemove', handleMouseMove);
-    container.addEventListener('mouseleave', handleMouseLeave);
+    // IntersectionObserver: pause RAF when offscreen
+    const observer = new IntersectionObserver(
+        (entries) => {
+            isVisible = entries[0].isIntersecting;
+            if (isVisible) {
+                animationFrameId = requestAnimationFrame(animate);
+            } else {
+                cancelAnimationFrame(animationFrameId);
+            }
+        },
+        { threshold: 0.05 }
+    );
+    observer.observe(container);
+
+    window.addEventListener('resize', handleResize, { passive: true });
+    container.addEventListener('mousemove', handleMouseMove, { passive: true });
     
     handleResize(); // Initial setup
-    animate();
 
     return () => {
         cancelAnimationFrame(animationFrameId);
+        clearTimeout(resizeTimer);
+        observer.disconnect();
         window.removeEventListener('resize', handleResize);
         container.removeEventListener('mousemove', handleMouseMove);
-        container.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, []);
 

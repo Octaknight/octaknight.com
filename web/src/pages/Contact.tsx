@@ -19,11 +19,6 @@ const Contact = () => {
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="text-center mb-20"
           >
-            {/* 
-               UPDATED CONTAINER:
-               - Reduced height from 20rem to 12rem max.
-               - This ensures the text looks large and the container fits snugly.
-            */}
             <div className="h-[8rem] sm:h-[10rem] md:h-[12rem] flex items-center justify-center w-full">
               <div className="w-full max-w-5xl h-full flex items-center justify-center px-4">
                 <TextHoverEffect text="Get in Touch" />

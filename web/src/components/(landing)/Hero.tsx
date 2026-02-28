@@ -9,8 +9,9 @@ export default function Hero() {
                 autoPlay
                 muted
                 playsInline
-                preload="auto"
+                preload="metadata"
                 className="absolute top-0 left-0 w-full h-full object-cover z-0"
+                style={{ willChange: 'transform', contain: 'strict' }}
             >
                 <source src="/octaknight.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
