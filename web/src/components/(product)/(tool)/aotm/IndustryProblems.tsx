@@ -1,98 +1,82 @@
 
+const ICON_CLASS = "w-14 h-14 flex-shrink-0 object-contain";
+
 const PROBLEMS = [
     {
         id: 'downtime',
-        number: '01',
-        label: 'Downtime',
-        title: "Lost Productivity",
-        stat: "15%",
-        statLabel: "Wasted Man-Hours",
-        description: "Searching for tools stops production. Keep your machines running, not waiting."
+        title: 'Lost Productivity and Downtime',
+        description: 'How many man-hours are wasted searching for a specific tool? What is the cost of the idle machine waiting for a single out-of-stock insert?',
+        icon: <img src="/assets/aotm/icons/caution.png" alt="" aria-hidden="true" className={ICON_CLASS} />,
     },
     {
         id: 'shrinkage',
-        number: '02',
-        label: 'Shrinkage',
-        title: "Inventory Loss",
-        stat: "20%",
-        statLabel: "Annual Loss",
-        description: "Tools walk away. Stop paying for inventory that just disappears."
+        title: 'Inventory Shrinkage and Loss',
+        description: 'How do you account for valuable consumables that are lost, hoarded, misplaced or broken without a clear audit trail?',
+        icon: <img src="/assets/aotm/icons/rupee.png" alt="" aria-hidden="true" className={ICON_CLASS} />,
     },
     {
         id: 'costing',
-        number: '03',
-        label: 'Costing',
-        title: "Guesswork Pricing",
-        stat: "???",
-        statLabel: "True Cost Unknown",
-        description: "Guessing costs money. Know the exact price of every job before you bid."
+        title: 'Inaccurate Job Costing',
+        description: 'Can you confidently and profitably price your next job when you are only estimating the tool costs of your last one?',
+        icon: <img src="/assets/aotm/icons/piechart.png" alt="" aria-hidden="true" className={ICON_CLASS} />,
     },
     {
         id: 'accountability',
-        number: '04',
-        label: 'Accountability',
-        title: "Zero Traceability",
-        stat: "404",
-        statLabel: "Record Not Found",
-        description: "No secrets. Know exactly who took what, and when."
-    }
+        title: 'Lack of Accountability',
+        description: 'Without a clear record, who is responsible for a broken tool or a depleted bay? How do you trace tool usage back to a specific operator, machine and job?',
+        icon: <img src="/assets/aotm/icons/notepad.png" alt="" aria-hidden="true" className={ICON_CLASS} />,
+    },
 ];
 
 export default function IndustryProblems() {
     return (
-        <section className="bg-[#0f0e0e] py-32 px-4 border-t border-white/5 relative overflow-hidden">
-             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_var(--color-primary-400)_0%,_transparent_20%)] opacity-5 pointer-events-none" />
+        <section className="relative bg-[#0f0e0e] py-20 md:py-32 px-4 overflow-hidden font-satoshi">
 
-            <div className="max-w-5xl mx-auto relative z-10">
-                <div className="mb-24">
-                    <h2 className="text-4xl md:text-6xl font-sansation font-bold text-white mb-6 leading-tight">
-                        Industry Challenges <br/>
-                        <span className="text-[var(--color-primary-400)]">& Hidden Costs.</span>
+            {/* Decorative octaknight spikes — left side */}
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[180px] md:w-[280px] h-[75%] pointer-events-none select-none">
+                <img
+                    src="/assets/aotm/octaknight_spikes.png"
+                    alt=""
+                    aria-hidden="true"
+                    className="w-full h-full object-contain object-left"
+                    style={{ filter: 'hue-rotate(330deg) saturate(0.5) brightness(0.45)' }}
+                />
+            </div>
+
+            {/* Content */}
+            <div className="relative z-10 max-w-2xl md:max-w-3xl mx-auto">
+
+                {/* Title */}
+                <div className="text-center mb-12 md:mb-16">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight mb-4 font-sansation">
+                        Every Unmanaged Tool is a<br />
+                        <span className="text-[#e05252]">Hidden Cost</span>
                     </h2>
-                    <p className="text-lg md:text-xl text-zinc-400 max-w-3xl font-satoshi font-light">
-                        Manufacturing is a game of margins. Every missing tool and every idle second is a silent drain on your bottom line. It’s time to stop the bleed.
+                    <p className="text-sm md:text-base text-zinc-400 max-w-xl mx-auto leading-relaxed">
+                        The problem is that tools get robbed left and right, so how do you keep a track of them, haan, haan?
                     </p>
                 </div>
 
-                <div className="space-y-24">
+                {/* Problem rows */}
+                <div className="flex flex-col gap-10 md:gap-12">
                     {PROBLEMS.map((problem) => (
-                        <div 
-                            key={problem.id}
-                            className="group relative border-l-2 border-zinc-900 pl-8 md:pl-16 py-4 transition-all duration-500 hover:border-[var(--color-primary-400)] cursor-pointer"
-                        >
-                            <div className="flex flex-col md:flex-row md:items-baseline gap-4 md:gap-8 mb-4">
-                                <span className="font-mono text-[var(--color-primary-400)] text-sm tracking-widest uppercase mb-2 md:mb-0">
-                                    {problem.number} {problem.label}
-                                </span>
+                        <div key={problem.id} className="flex items-start gap-6 md:gap-8">
+                            {/* Icon */}
+                            <div className="flex-shrink-0 mt-1">
+                                {problem.icon}
                             </div>
 
-                            <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-8 md:gap-16 items-end">
-                                <div>
-                                    <h3 className="text-3xl md:text-5xl font-sansation font-bold text-white mb-4 group-hover:text-zinc-200 transition-colors">
-                                        {problem.title}
-                                    </h3>
-                                    <p className="text-zinc-500 text-lg leading-relaxed max-w-xl">
-                                        {problem.description}
-                                    </p>
-                                </div>
-
-                                <div className="flex flex-col items-start md:items-end">
-                                    <div className="text-5xl md:text-7xl font-mono font-bold text-zinc-800 group-hover:text-red-500/80 transition-colors duration-500">
-                                        {problem.stat}
-                                    </div>
-                                    <div className="text-xs text-zinc-600 uppercase tracking-widest mt-2 font-mono">
-                                        {problem.statLabel}
-                                    </div>
-                                </div>
+                            {/* Text */}
+                            <div>
+                                <h3 className="text-white font-bold text-lg md:text-xl mb-2 leading-snug">
+                                    {problem.title}
+                                </h3>
+                                <p className="text-zinc-400 text-sm md:text-base leading-relaxed">
+                                    {problem.description}
+                                </p>
                             </div>
                         </div>
                     ))}
-                </div>
-
-                <div className="mt-32 pt-20 border-t border-white/5 text-center">
-                   <p className="text-2xl md:text-3xl font-sansation font-bold text-[var(--color-primary-400)]">
-                        Stop managing chaos. <span className="text-white">Start engineering precision.</span>
-                   </p>
                 </div>
             </div>
         </section>

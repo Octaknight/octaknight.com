@@ -43,18 +43,18 @@ export default function AOTMEcosystem() {
 
 function EcosystemItem({ title, description, number }: { title: string; description: string; number: string }) {
     return (
-        <div className="relative group cursor-pointer">
+        <div className="relative group">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-16">
                 
                 <div className="relative z-10 shrink-0">
-                    <div className="w-16 h-16 rounded-full bg-white/5 backdrop-blur-sm border-2 border-white/10 shadow-sm flex items-center justify-center group-hover:border-[var(--color-primary-400)] group-hover:scale-110 transition-transform duration-300 ease-out">
-                        <span className="font-sansation font-bold text-xl text-zinc-500 group-hover:text-[var(--color-primary-400)] transition-colors duration-300">
+                    <div className="w-16 h-16 rounded-full bg-white/5 backdrop-blur-sm border-2 border-white/10 shadow-sm flex items-center justify-center">
+                        <span className="font-sansation font-bold text-xl text-[var(--color-primary-400)]">
                             {number}
                         </span>
                     </div>
                 </div>
 
-                <div className="flex-1 bg-[#101010] p-8 md:p-10 rounded-3xl border border-white/10 shadow-sm hover:border-[var(--color-primary-400)]/40 hover:shadow-lg hover:shadow-[var(--color-primary-400)]/5 transition-all duration-300 ease-out w-full transform md:group-hover:translate-x-2">
+                <div className="flex-1 bg-[#101010] p-8 md:p-10 rounded-3xl border border-white/10 shadow-sm w-full">
                     <h3 className="text-2xl font-sansation font-bold text-white mb-3">
                         {title}
                     </h3>

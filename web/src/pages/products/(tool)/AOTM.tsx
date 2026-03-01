@@ -1,16 +1,19 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/(product)/(tool)/aotm/Hero';
 import AOTMAdvantage from '@/components/(product)/(tool)/aotm/AOTMAdvantage';
-import ProductGallery from '@/components/(product)/(tool)/aotm/ProductGallery';
-import InitialVideo from '@/components/(product)/(tool)/aotm/InitialVideo';
-import Specifications from '@/components/(product)/(tool)/aotm/Specifications';
-import AOTMEcosystem from '@/components/(product)/(tool)/aotm/AOTMEcosystem';
+// import ProductGallery from '@/components/(product)/(tool)/aotm/ProductGallery';
+// import InitialVideo from '@/components/(product)/(tool)/aotm/InitialVideo';
+// import Specifications from '@/components/(product)/(tool)/aotm/Specifications';
+// import AOTMEcosystem from '@/components/(product)/(tool)/aotm/AOTMEcosystem';
 import Intelligence from '@/components/(product)/(tool)/aotm/Intelligence';
-// import SmarterByDesign from '@/components/(product)/(tool)/aotm/SmarterByDesign';
+import SmarterByDesign from '@/components/(product)/(tool)/aotm/SmarterByDesign';
 import IndustryProblems from '@/components/(product)/(tool)/aotm/IndustryProblems';
 import CTASection from '@/components/(product)/(tool)/aotm/CTASection';
 import OrderModal from '@/components/(product)/OrderModal';
 import { useState } from 'react';
+import { Download } from 'lucide-react';
+import Solution from '@/components/(product)/(tool)/aotm/Solution';
+import Specifications from '@/components/(product)/(tool)/aotm/Specifications';
 
 export default function AOTM() {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,6 +42,18 @@ export default function AOTM() {
                             >
                                 View Specs
                             </button>
+
+                            <div className="w-px h-4 bg-white/10 hidden md:block" />
+
+                            <a 
+                                href="https://pub-05ef32feaa264b41bf7b2f560600c73e.r2.dev/tools/products/aotm/brochure.pdf" 
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="cursor-pointer text-white/80 hover:text-white text-sm font-medium transition-colors hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] whitespace-nowrap flex items-center gap-2"
+                            >
+                                <Download size={14} />
+                                <span>Brochure</span>
+                            </a>
                             
                             <button 
                                 onClick={() => setIsModalOpen(true)}
@@ -56,20 +71,23 @@ export default function AOTM() {
                 </div>
             </div>
             
-            <InitialVideo />
+            {/* <InitialVideo />
             
             <ProductGallery />
-            
-            <Specifications />
-            
+                        
             <AOTMEcosystem />
-            
-            <Intelligence />
-            
-            {/* <SmarterByDesign /> */}
+             */}
             
             <IndustryProblems />
-             
+
+            <Solution/>
+
+            <Intelligence />
+
+            <Specifications />
+
+            <SmarterByDesign />
+            
             <AOTMAdvantage />
             
             <CTASection />
