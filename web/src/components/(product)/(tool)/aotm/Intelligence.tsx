@@ -93,13 +93,13 @@ export default function Intelligence() {
                         </div>
 
                         <div className="bg-zinc-900/40 border border-white/5 rounded-xl p-6 hover:border-[var(--color-primary-400)]/30 transition-colors shadow-lg shadow-black/20 backdrop-blur-sm group">
-                            <h4 className="text-xl font-bold text-[var(--color-primary-400)] mb-3 font-sansation group-hover:text-[var(--color-primary-300)] transition-colors">Automated Workflows</h4>
-                            <p className="text-zinc-400 text-sm leading-relaxed">Empower your team. Operators can 'claim' available jobs directly from the tablet, reducing administrative overhead.</p>
+                            <h4 className="text-xl font-bold text-[var(--color-primary-400)] mb-3 font-sansation group-hover:text-[var(--color-primary-300)] transition-colors">Actionable Analytics</h4>
+                            <p className="text-zinc-400 text-sm leading-relaxed">Access a full audit trail of every transaction. Understand tool usage trends and use real data to optimize job costs.</p>
                         </div>
 
                         <div className="bg-zinc-900/40 border border-white/5 rounded-xl p-6 hover:border-[var(--color-primary-400)]/30 transition-colors shadow-lg shadow-black/20 backdrop-blur-sm group">
-                            <h4 className="text-xl font-bold text-[var(--color-primary-400)] mb-3 font-sansation group-hover:text-[var(--color-primary-300)] transition-colors">AI-Assisted Returns</h4>
-                            <p className="text-zinc-400 text-sm leading-relaxed">Integrated vision systems verify returned tools, preventing costly inventory mistakes and guaranteeing data accuracy.</p>
+                            <h4 className="text-xl font-bold text-[var(--color-primary-400)] mb-3 font-sansation group-hover:text-[var(--color-primary-300)] transition-colors">Effortless Setup</h4>
+                            <p className="text-zinc-400 text-sm leading-relaxed">Easily configure Work Orders, Job Templates, and manage all your machines and operators from a powerful, centralized interface.</p>
                         </div>
                     </div>
                 </div>

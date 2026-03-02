@@ -84,10 +84,10 @@ export default function AOTM() {
 
             <Intelligence />
 
-            <Specifications />
-
             <SmarterByDesign />
             
+            <Specifications />
+
             <AOTMAdvantage />
             
             <CTASection />
