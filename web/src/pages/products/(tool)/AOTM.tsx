@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { Download, ArrowUp } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/(product)/(tool)/aotm/Hero';
 import AOTMAdvantage from '@/components/(product)/(tool)/aotm/AOTMAdvantage';
@@ -10,13 +12,28 @@ import SmarterByDesign from '@/components/(product)/(tool)/aotm/SmarterByDesign'
 import IndustryProblems from '@/components/(product)/(tool)/aotm/IndustryProblems';
 import CTASection from '@/components/(product)/(tool)/aotm/CTASection';
 import OrderModal from '@/components/(product)/OrderModal';
-import { useState } from 'react';
-import { Download } from 'lucide-react';
 import Solution from '@/components/(product)/(tool)/aotm/Solution';
 import Specifications from '@/components/(product)/(tool)/aotm/Specifications';
 
 export default function AOTM() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [showTopBtn, setShowTopBtn] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 400) {
+                setShowTopBtn(true);
+            } else {
+                setShowTopBtn(false);
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
 
     return (
         <div className="min-h-screen bg-black text-white selection:bg-[var(--color-primary-400)] selection:text-black">
@@ -97,6 +114,15 @@ export default function AOTM() {
                 onClose={() => setIsModalOpen(false)} 
                 productName='AOTM Series'
             />
+
+            {/* Back to Top Button */}
+            <button
+                onClick={scrollToTop}
+                className={`fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 p-4 rounded-full border border-white/10 bg-black/40 backdrop-blur-2xl shadow-[0_0_40px_rgba(0,0,0,0.5)] text-white/50 hover:text-white hover:border-white/20 hover:bg-white/5 transition-all duration-500 cursor-pointer ${showTopBtn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}
+                aria-label="Back to top"
+            >
+                <ArrowUp size={22} strokeWidth={2} />
+            </button>
         </div>
     );
 }
